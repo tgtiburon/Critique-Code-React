@@ -1,0 +1,15 @@
+<section class="side-info">
+    {{> side-info}}
+</section>
+
+<section class="endless-scroll">
+    <div class="posts-timeline">
+        {{#each posts as |post|}}
+        <div class="post-container">
+            {{> post-info post}}
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+{{!-- <script src="/js/top-posts.js" defer></script> --}}

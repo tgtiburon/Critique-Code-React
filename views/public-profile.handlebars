@@ -1,0 +1,44 @@
+<section class="side-info">
+     <section class="sidebar-right">
+   <div="inner-side">
+    <div class="header-card">
+    <h3>{{posts.[0].user.username}}</h3>
+    <div>
+        <h4>Software Engineer</h4>
+    </div>
+    <img class="profile-icon" src="/assets/{{posts.[0].user.avatar}}"></img>
+    </div>
+    <div class="about-section">
+    <p>{{posts.[0].user.bio}}</p>
+    </div>
+    <div>
+    <div class="about-section">
+        <p>{{posts.length}} posts <span>{{get_comments posts}} comments</span></p>
+    </div>
+    </div>
+    </div>
+ </section>
+</section>
+
+<section class="side-info">
+     <section class="sidebar-left">
+   <div="inner-side">
+       <div class="header-card">
+       <img src='{{concat_url posts.[0].user.github}}'></img>
+       </div>
+    </div>
+ </section>
+</section>
+
+<section>
+{{#if posts.length}}
+<section class="endless-scroll">
+    <div class="posts-timeline">
+        <h2 id="posts-id">Welcome to {{posts.[0].user.username}}'s Profile</h2>
+        {{#each posts as |post|}}
+        <div class="post-container">
+            {{> post-info post}}
+        </div>
+        {{/each}}
+</div>
+{{/if}}
