@@ -1,14 +1,31 @@
-<<<<<<< HEAD
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloProvider, createHttpLink, AppoloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider, createHttpLink, ApolloClient, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import './App.css';
-=======
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
->>>>>>> 85536e60a2763c8b2e10bbf9142e4cb7bfdb8d0c
+
+import Home from './pages/Home';
+
+
+const httpLink = createHttpLink({
+  uri: '/graphql'
+});
+
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
