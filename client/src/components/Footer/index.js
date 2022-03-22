@@ -3,7 +3,7 @@ import React from 'react';
 function Footer () {
   return (
     <section>
-      This is the footer
+      Test Development Build 0.2
     </section>
   )
 }
