@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header () {
   return (
-    <section>
+    <section className="top">
       <div className="auth-btn-container">
         {/* Change this to render only if logged in */}
         <button id="logout-btn" className="auth-btns">Log Out</button>
