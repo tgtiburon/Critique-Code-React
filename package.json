@@ -1,0 +1,31 @@
+{
+  "name": "critique-code-react",
+  "version": "1.0.0",
+  "description": "Critique Code React",
+  "engines": {
+    "node": "16.x"
+  },
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "build": "cd client && npm run build",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "seed": "cd server && npm run seed",
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgtiburon/slay-the-market.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tgtiburon/critique-code-react/issues"
+  },
+  "homepage": "https://github.com/tgtiburon/critique-code-react#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
