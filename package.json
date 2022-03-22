@@ -1,32 +1,38 @@
 {
-  "name": "critique-code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "jest",
-    "start": "node server.js",
-    "seeds": "node seeds/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/burcarz/critique-code.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/burcarz/critique-code/issues"
-  },
-  "homepage": "https://github.com/burcarz/critique-code#readme",
+  "name": "critique-code-react",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "connect-session-sequelize": "^7.1.2",
-    "dotenv": "^11.0.0",
-    "express": "^4.17.2",
-    "express-handlebars": "^6.0.2",
-    "express-session": "^1.17.2",
-    "jest": "^27.4.7",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.13.0"
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
