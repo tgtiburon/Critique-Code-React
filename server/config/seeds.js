@@ -471,7 +471,7 @@ db.once("open", async () => {
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
       vote_count: 2,
-      user_id: 8,
+      user_id: 1,
       tag_genre: 'Funny',
       tag_language: 'Python'
     },
@@ -490,7 +490,7 @@ db.once("open", async () => {
       console.log(customer);
       --> { id: 1, name: 'jeff' }`,
       vote_count: 2,
-      user_id: 9,
+      user_id: 2,
       tag_genre: 'Advice',
       tag_language: 'Javascript'
     },
@@ -501,7 +501,7 @@ db.once("open", async () => {
       title: 'Commas... :^)',
       post_body: `<input type="file" name="my_image" accept="image/gif,image/jpeg,image/jpg,image/png">`,
       vote_count: 2,
-      user_id: 10,
+      user_id: 3,
       tag_genre: 'Funny',
       tag_language: 'HTML'
     },
@@ -522,7 +522,7 @@ db.once("open", async () => {
           transition: all 0.3s ease;
       }`,
       vote_count: 2,
-      user_id: 10,
+      user_id: 4,
       tag_genre: 'Advice',
       tag_language: 'CSS'
     },
@@ -533,7 +533,7 @@ db.once("open", async () => {
       title: 'Funny date formating in Java.',
       post_body: `java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);`,
       vote_count: 2,
-      user_id: 9,
+      user_id: 5,
       tag_genre: 'Funny',
       tag_language: 'Java'
     },
@@ -553,14 +553,14 @@ db.once("open", async () => {
           throw new NotImplementedException();
       }`,
       vote_count: 2,
-      user_id: 8,
+      user_id: 6,
       tag_genre: 'Advice',
       tag_language: 'C#'
     },
     {
       id: 14,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [2],
       title: 'Today is the first day I tried to use C++. Today is also the last :)',
       post_body: `
       Average
@@ -579,30 +579,30 @@ db.once("open", async () => {
         
         return 0;
       }`,
-      vote_count: 8,
+      vote_count: 2,
       user_id: 7,
       tag_genre: 'Funny',
       tag_language: 'C++'
     },
     {
       id: 15,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [6],
       title: 'Changing around some code, but I am not sure if this is correct in PHP. Not getting any errors, but the while loop is not working. Whats wrong?',
       post_body: `
       $result = $mysqli->query('SELECT * FROM students');
       while ($row = $result->fetch_assoc()) 
         echo $row['name'] . '<br>';
       }`,
-      vote_count: 45,
+      vote_count: 2,
       user_id: 6,
       tag_genre: 'Advice',
       tag_language: 'PHP'
     },
     {
       id: 16,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [2],
       title: 'So, map takes in two integers but it literally is using the same syntax as javascript would use on a string.',
       post_body: `
       ## Taking Two Integers as input
@@ -613,15 +613,15 @@ db.once("open", async () => {
       ## Taking a List as input
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
-      vote_count: 5,
+      vote_count: 2,
       user_id: 5,
       tag_genre: 'Funny',
       tag_language: 'Python'
     },
     {
       id: 17,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [6],
       title: 'Would the keys hewre be the name before the semicolon?',
       post_body: `
       let myObject = { one: 1, two: 2, three: 3 };
@@ -629,26 +629,26 @@ db.once("open", async () => {
         //...do something
         console.log(key, value);
       });`,
-      vote_count: 23,
+      vote_count: 2,
       user_id: 4,
       tag_genre: 'Advice',
       tag_language: 'Javascript'
     },
     {
       id: 18,
-      upVoted_user_ids: [3],
+      upVoted_user_ids: [1],
       downVoted_user_ids: [4],
       title: 'What is this weird string in pattern??? lol',
       post_body: `<input type="text" title="email_address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" />`,
-      vote_count: 1,
+      vote_count: 2,
       user_id: 3,
       tag_genre: 'Funny',
       tag_language: 'HTML'
     },
     {
-      id: 5,
+      id: 19,
       upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      downVoted_user_ids: [6],
       title: 'What is the difference between :: and : ? It looks like you can use :: stand alone maybe?',
       post_body: `
       ::selection {
@@ -660,23 +660,29 @@ db.once("open", async () => {
         background: deeppink;
         color: white;
       }`,
-      vote_count: 320,
+      vote_count: 2,
       user_id: 2,
       tag_genre: 'Advice',
       tag_language: 'CSS'
     },
     {
+      id: 20,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [4],
       title: 'Why does the MM upper case but dd and yyyy are lowercase? Kinda funny.',
       post_body:  `
       SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );
       Date date = format.parse( myString );
       `,
-      vote_count: 148,
+      vote_count: 2,
       user_id: 1,
       tag_genre: 'Funny',
       tag_language: 'Java'
     },
     {
+      id: 21,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
       title: 'Advice for a C++ developer trying to get into C#? Not used to this syntax at all and would like some advice.',
       post_body: `
       // Enter "imethod [Tab]", then...  
@@ -690,6 +696,9 @@ db.once("open", async () => {
       tag_language: 'C#'
     },
     {
+      id: 22,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [2],
       title: 'Funny >> << lol',
       post_body: `
       Area of rectangle
@@ -714,7 +723,7 @@ db.once("open", async () => {
         return 0; 
       }
       `,
-      vote_count: 15,
+      vote_count: 2,
       user_id: 3,
       tag_genre: 'Funny',
       tag_language: 'C++'
@@ -749,6 +758,62 @@ db.once("open", async () => {
     password: "pass1234",
 
   });
+  await User.create({
+    id: 3,
+    userName: "TestName3",
+    email: "test3@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 3",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+
+  });
+  await User.create({
+    id: 4,
+    userName: "TestName4",
+    email: "test4@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 4",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+
+  });
+  await User.create({
+    id: 5,
+    userName: "TestName5",
+    email: "test5@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 5",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+
+  });
+  await User.create({
+    id: 6,
+    userName: "TestName6",
+    email: "test6@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 6",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+
+  });
+  await User.create({
+    id: 7,
+    userName: "TestName7",
+    email: "test7@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 7",
+    github: "r2d2",
+    avatar: "avatar1.png",
+    password: "pass1234",
+
+  });
+  
   console.log("Users seeded");
  
  
