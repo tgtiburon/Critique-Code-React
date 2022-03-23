@@ -1,709 +1,758 @@
 // Load required files/functions
 const db = require("./connection");
-const { Card, Enemy, Player, Room, Stock } = require("../models");
-const Dungeon = require("../models/Dungeon");
+const { Comment, Post, User  } = require("../models");
+
 
 // open the database
 db.once("open", async () => {
-  // Delete all current cards in db
-  await Card.deleteMany();
-  // Add all the following cards to the db
-  const cards = await Card.insertMany([
+  // Delete all current comments in the db
+  await Comment.deleteMany();
+  // Add all the following comments to the db
+  const comments = await Comment.insertMany([
     {
-      name: "Paypal PYPL",
-      description: "PayPal",
-      id: 0,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
-    },
-    {
-      name: "Apple AAPL",
-      description: "Apple Corporation",
       id: 1,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'Looking fine! Ideally we would not store userdata in an array of objects, but as a place holder its not bad.',
+      user_id: 6,
+      post_id: 1
     },
     {
-      name: "TSLA Tesla",
-      description: "Tesla Corporation",
-      id: 2,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      id: 2, 
+      comment_body: 'Gotta love C++ syntax lol',
+      user_id: 6,
+      post_id: 8
     },
     {
-      name: "eBay Inc.  EBAY",
-      description: "eBay Inc.",
       id: 3,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'Yeah, that cant be right.',
+      user_id: 3,
+      post_id: 10
     },
     {
-      name: "UWM Holdings Corp. UWMC",
-      description: "UWM Holdings Corp.",
       id: 4,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: ' Selection is defined before its called on the custom-text-selection, so it does that thing.',
+      user_id: 3,
+      post_id: 18
+      
     },
     {
-      name: "United States Steel Corp. X",
-      description: "United States Steel Corp.",
       id: 5,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'Syntax wise, they are really similar. Which is a good thing, but at the same time, you could get some things mixed up. But as a Java developer, you should have no issues getting used to it.',
+      user_id: 7,
+      post_id: 5
     },
     {
-      name: "Best Buy Co Inc  BBY",
-      description: "Best Buy Co Inc.",
       id: 6,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'I have often wondered that too when date formatting. Anyone have an idea of why this is?',
+      user_id: 1,
+      post_id: 20
     },
     {
-      name: "MicroSoft Corporation MSFT",
-      description: "MicroSoft Corporation",
       id: 7,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: '.... Your CTO is forcing you to do WHAT?',
+      user_id: 6,
+      post_id: 7
     },
     {
-      name: "Sony Group Corp SONY",
-      description: "Sony Group Corp",
       id: 8,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'Thats part of the syntax of the new lambda expressions, to be introduced in Java 8.',
+      user_id: 7,
+      post_id: 4
     },
     {
-      name: "Nintendo NTDOY",
-      description: "Nintendo ",
       id: 9,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'Wait, is the java.util.Date a library that is being reassigned here?',
+      user_id: 6,
+      post_id: 12
     },
     {
-      name: "GameStop GME",
-      description: "GameStop Corporation",
       id: 10,
-      class: "Attack",
-      value: 7,
-      upgrade: 1,
+      comment_body: 'No idea why its like that, but I just use it anyways and it works',
+      user_id: 6,
+      post_id: 20
     },
     {
-      name: "Lockheed Martin LMT",
-      description: "Lockheed Martin Corporation",
       id: 11,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
+      comment_body: 'If you dont need to worry about speed, probably a good choice haha',
+      user_id: 3,
+      post_id: 14
     },
     {
-      name: "Raytheon RTX",
-      description: "Raytheon Technologies Corporation",
       id: 12,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
+      comment_body: 'Someone already mentioned what it does, but does anyone have links to how this would work in more detail?',
+      user_id: 5,
+      post_id: 4
     },
     {
-      name: "Northrop Grumman NOC",
-      description: "Northrop Grumman Corporation",
       id: 13,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
+      comment_body: 'If you are trying to get it into production, you need a db. Full stop. If it is for prototyping youre good.',
+      user_id: 4,
+      post_id: 9
     },
     {
-      name: "CACI International Inc. CACI",
-      description: "CACI International Inc.",
       id: 14,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
+      comment_body:'Just differences in syntax bro ;)',
+      user_id: 5,
+      post_id: 14
     },
     {
-      name: "Moderna MRNA",
-      description: "Moderna Inc.",
+      id: 15,
+      comment_body: 'Same lol',
+      user_id: 6,
+      post_id: 2
+    },
+    {
+      id: 16,
+      comment_body: 'Just try not to get caught.',
+      user_id: 8,
+      post_id: 2
+    },
+    {
+      id: 17,
+      comment_body:'In the same boat as the rest of you',
+      user_id: 2,
+      post_id: 20
+    },
+    {
+      id: 18,
+      comment_body: 'Normally we would just import the date library and just call it from main or other methods.',
+      user_id: 4,
+      post_id: 11
+    },
+    {
+      id: 19,
+      comment_body:'Basically public means that you will be able to use it global rather than when private, they can only be accessed by individual object instances.',
+      user_id: 5,
+      post_id: 13
+    },
+    {
+      id: 20,
+      comment_body:'So would map be like, formatting the values?',
+      user_id: 9,
+      post_id: 16
+    },
+    {
+      id: 21,
+      comment_body: 'Basically, the -> separates the parameters (left-side) from the implementation (right side).',
+      user_id: 6,
+      post_id: 4
+    },
+    {
+      id: 22,
+      comment_body: 'The commas are just indicating what the input will accept.',
+      user_id: 4,
+      post_id: 10
+    },
+    {
+      id: 23,
+      comment_body: 'Python might take a bit to get used to, but just imagine being the person above you and being forced to use PHP lol',
+      user_id: 3,
+      post_id: 8
+    },
+    {
+      id: 24,
+      comment_body:'Other user answered, just wanted to comment to seem smart :)',
+      user_id: 8,
+      post_id: 10
+    },
+    {
+      id: 25,
+      comment_body:'You are forgetting a curly bracket I reckon.',
+      user_id: 1,
+      post_id: 15
+    },
+    {
+      id: 26,
+      comment_body: 'I would say that this checks out. If you arent getting any css errors then you should be good :)',
+      user_id: 5,
+      post_id: 3
+    },
+    {
+      id: 27,
+      comment_body: 'Yeah it is the curly bracket. Right after you declare the loop',
+      user_id: 1,
+      post_id: 15
+    },
+    {
+      id: 28,
+      comment_body: 'The map() function executes a specified function for each item in an iterable. The item is sent to the function as a parameter.',
+      user_id: 4,
+      post_id: 16
+    },
+    {
+      id: 29,
+      comment_body: 'That kind of looks regex? I could be wrong though.',
+      user_id: 4,
+      post_id: 18
+    },
+    {
+      id: 30,
+      comment_body: 'Commas :^) hehe',
+      user_id: 4,
+      post_id: 10
+    },
+    {
+      id: 31,
+      comment_body: 'Dont make fun of Java, I use it every day ;-; it is my favorite programming language',
+      user_id: 7,
+      post_id: 5
+    },
+    {
+      id: 32,
+      comment_body: 'I never knew that javascript arrays could be used with the find function',
+      user_id: 10,
+      post_id: 1
+    },
+    {
+      id: 33,
+      comment_body: 'Regex, 90% sure',
+      user_id: 3,
+      post_id: 19
+    },
+    {
+      id: 34,
+      comment_body: 'Does the checkbox-symbol corrilate with something in the container?',
+      user_id: 5,
+      post_id: 3
+    },
+    {
+      id: 35,
+      comment_body: 'I mean, C++ isnt that bad if you are doing game stuff. Most of the time you can get away with just unity or some other language, but for making something like a game engine, you should probably learn C++.',
+      user_id: 10,
+      post_id: 14
+    },
+    {
+      id: 36,
+      comment_body: 'So since its a map call, int would be a function I reckon',
+      user_id: 10,
+      post_id: 8
+    },
+    {
+      id: 37,
+      comment_body: 'That would be correct, first child is an element inside of the checkbox div.',
+      user_id: 10,
+      post_id: 11
+    },
+    {
+      id: 38,
+      comment_body: 'You are just getting a bunch of different objects as arguments?',
+      user_id: 8,
+      post_id: 5
+    },
+    {
+      id: 39,
+      comment_body: 'HTML is virtually composed of strings, and what makes regular expression so powerful is, a regular expression can match different strings. Admittedly, a regular expression is not the first choice to correctly parse HTML, because there are some common mistakes such as missing closing tags, mismatching some tags, etc',
+      user_id: 8,
+      post_id: 19
+    },
+    {
+      id: 40,
+      comment_body: 'A regular expression (sometimes called a rational expression) is a sequence of characters that define a search pattern, mainly for use in pattern matching with strings, or string matching, i.e. "find and replace"-like operations.',
+      user_id: 9,
+      post_id: 19
+    },
+    {
       id: 41,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body:'Welcome to Java, friend.',
+      user_id: 5,
+      post_id: 4
     },
     {
-      name: "Pfizer Inc. PFE",
-      description: "Pfizer Inc.",
       id: 42,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body:'Yeah so, this syntax is quite normal. With the second class call, we are getting the svg specifically in the first child.',
+      user_id: 2,
+      post_id: 11
     },
     {
-      name: "Johnson & Johnson JNJ",
-      description: "Johnson & Johnson",
       id: 43,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body: 'You bought into the C++ meme didnt you...?',
+      user_id: 4,
+      post_id: 6
     },
     {
-      name: "BioNTech BNTX",
-      description: "BioNTech ",
       id: 44,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body: 'C++ has nothing to do with memes.',
+      user_id: 9,
+      post_id: 6
     },
     {
-      name: "AstraZeneca AZN",
-      description: "AstraZeneca",
       id: 45,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body:'I gave up C++. I prefer C# but understand why people still prefer it.',
+      user_id: 7,
+      post_id: 9
     },
     {
-      name: "Novavax NVAX",
-      description: "Novavax",
       id: 46,
-      class: "Block",
-      value: 3,
-      upgrade: 1,
+      comment_body: 'Ah yes, regex. My mind trembles.',
+      user_id: 4,
+      post_id: 19
     },
     {
-      name: "Eli Lilly and Co LLY",
-      description: "Eli Lilly and Co",
-      id: 61,
-      class: "Heal",
-      value: 1,
-      upgrade: 1,
+      id: 47,
+      comment_body: 'Always nice to see new people coming t JavaScript',
+      user_id: 10,
+      post_id: 1
     },
     {
-      name: "Novo Nordisk A/S NVO",
-      description: "Novo Nordisk A/S",
-      id: 62,
-      class: "Heal",
-      value: 1,
-      upgrade: 1,
+      id: 48,
+      comment_body:'Unpopular opinion but I actually like regex lol',
+      user_id: 2,
+      post_id: 19
     },
     {
-      name: "Merck & Co Inc  MRK",
-      description: "Merck & Co Inc",
-      id: 63,
-      class: "Heal",
-      value: 1,
-      upgrade: 1,
+      id: 49,
+      comment_body: 'Oops, made a typeo. to**',
+      user_id: 10,
+      post_id: 1
     },
     {
-      name: "Bayer BAYRY",
-      description: "Bayer AG Corporation",
-      id: 64,
-      class: "Heal",
-      value: 1,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Paypal PYPL",
-      description: "PayPal",
-      id: 100,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Apple AAPL",
-      description: "Apple Corporation",
-      id: 101,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded TSLA Tesla",
-      description: "Tesla Corporation",
-      id: 102,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded eBay Inc.  EBAY",
-      description: "eBay Inc.",
-      id: 103,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded UWM Holdings Corp. UWMC",
-      description: "UWM Holdings Corp.",
-      id: 104,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded United States Steel Corp. X",
-      description: "United States Steel Corp.",
-      id: 105,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Best Buy Co Inc  BBY",
-      description: "Best Buy Co Inc.",
-      id: 106,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded MicroSoft Corporation MSFT",
-      description: "MicroSoft Corporation",
-      id: 107,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Sony Group Corp SONY",
-      description: "Sony Group Corp",
-      id: 108,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
+      id: 50,
+      comment_body: 'Dumb question, and kind of unrealated, but can you use regex in Java?',
+      user_id: 10,
+      post_id: 12
+    }
+   
+   
 
-    {
-      name: "Upgraded Nintendo NTDOY",
-      description: "Nintendo ",
-      id: 109,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded GameStop GME",
-      description: "GameStop Corporation",
-      id: 110,
-      class: "Attack",
-      value: 9,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Lockheed Martin LMT",
-      description: "Lockheed Martin Corporation",
-      id: 111,
-      class: "Attack",
-      value: 11,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Raytheon RTX",
-      description: "Raytheon Technologies Corporation",
-      id: 112,
-      class: "Attack",
-      value: 11,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Northrop Grumman NOC",
-      description: "Northro Grumman Corporation",
-      id: 113,
-      class: "Attack",
-      value: 11,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded CACI International Inc. CACI",
-      description: "CACI International Inc.",
-      id: 114,
-      class: "Attack",
-      value: 11,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Moderna MRNA",
-      description: "Moderna Inc.",
-      id: 141,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Pfizer Inc.",
-      description: "Pfizer Inc.",
-      id: 142,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Johnson & Johnson JNJ",
-      description: "Johnson & Johnson",
-      id: 143,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded BioNTech BNTX",
-      description: "BioNTech ",
-      id: 144,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded AstraZeneca AZN",
-      description: "AstraZeneca",
-      id: 145,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Novavax NVAX",
-      description: "Novavax",
-      id: 146,
-      class: "Block",
-      value: 5,
-      upgrade: 1,
-    },
-
-    // Upgraded Heal Cards   161-180
-    {
-      name: "Upgraded Eli Lilly and Co LLY",
-      description: "Eli Lilly and Co",
-      id: 161,
-      class: "Heal",
-      value: 3,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Novo Nordisk A/S NVO",
-      description: "Novo Nordisk A/S",
-      id: 162,
-      class: "Heal",
-      value: 3,
-      upgrade: 1,
-    },
-    {
-      name: "Upgraded Merck & Co Inc  MRK",
-      description: "Merck & Co Inc",
-      id: 163,
-      class: "Heal",
-      value: 3,
-      upgrade: 1,
-    },
-
-    {
-      name: "Upgraded Bayer BAYRY",
-      description: "Bayer AG Corporation",
-      id: 164,
-      class: "Heal",
-      value: 3,
-      upgrade: 1,
-    },
-    // Upgraded UTIL Cards181-200
+   
   ]);
-  console.log("Cards seeded");
-  // delete all enemiies
-  await Enemy.deleteMany();
-  // Add all the new enemies
-  const enemies = await Enemy.insertMany([
-    {
-      name: "Sweaty Crypto Bro",
-      isBoss: false,
-      currentHealth: 25,
-      maxHealth: 20,
-      isBoss: false,
+  console.log("Comments seeded");
+  // delete all posts
+  await Post.deleteMany();
+  // Add all the new posts
+  const posts = await Post.insertMany([
 
-      attack: randomVal(3, 5),
-      block: randomVal(2, 4),
-    },
-    {
-      name: "Strange Looking Ape PNG",
-      currentHealth: 30,
-      maxHealth: 60,
-      isBoss: false,
-      attack: randomVal(4, 6),
-      block: randomVal(3, 6),
-    },
-    {
-      name: "Generic Shiba Inu",
-      currentHealth: 20,
-      maxHealth: 20,
-      isBoss: false,
-
-      attack: randomVal(2, 4),
-      block: randomVal(2, 6),
-    },
-    {
-      name: "Crypto Punk",
-      currentHealth: randomVal(5, 20),
-      maxHealth: 35,
-      isBoss: false,
-
-      attack: randomVal(2, 4),
-      block: randomVal(2, 6),
-    },
-    {
-      name: "Over Priced Cat PNG",
-      currentHealth: randomVal(15, 20),
-      maxHealth: 40,
-      isBoss: false,
-
-      attack: randomVal(2, 6),
-      block: randomVal(2, 6),
-    },
-    {
-      name: "An Egg????",
-      currentHealth: randomVal(5, 15),
-      maxHealth: 45,
-      isBoss: false,
-
-      attack: randomVal(1, 4),
-      block: randomVal(2, 4),
-    },
-    {
-      name: "Totally Unique JPEG",
-      currentHealth: randomVal(5, 10),
-      maxHealth: 21,
-      isBoss: false,
-
-      attack: randomVal(1, 3),
-      block: randomVal(2, 7),
-    },
-    {
-      name: "Crypto Blob",
-      currentHealth: randomVal(6, 10),
-      maxHealth: 51,
-      isBoss: false,
-
-      attack: randomVal(1, 6),
-      block: randomVal(2, 7),
-    },
-    {
-      name: "Generic Crypto Coin",
-      currentHealth: randomVal(3, 15),
-      maxHealth: 28,
-      isBoss: false,
-
-      attack: randomVal(1, 7),
-      block: randomVal(2, 7),
-    },
-    {
-      name: "Crypto Enemy 153",
-      currentHealth: randomVal(3, 15),
-      maxHealth: 45,
-      isBoss: false,
-
-      attack: randomVal(1, 3),
-      block: randomVal(2, 7),
-    },
-    {
-      name: "Unknown Twitter NFT Bro",
-      currentHealth: randomVal(5, 15),
-      maxHealth: 65,
-      isBoss: false,
-
-      attack: randomVal(1, 6),
-      block: randomVal(3, 8),
-    },
-    {
-      name: "Mysterious NFT Image",
-      currentHealth: randomVal(2, 8),
-      maxHealth: 25,
-      isBoss: false,
-
-      attack: randomVal(1, 3),
-      block: randomVal(2, 7),
-    },
-    {
-      name: "NFT Mega Collector",
-      currentHealth: randomVal(7, 17),
-      maxHealth: 31,
-      isBoss: false,
-
-      attack: randomVal(3, 8),
-      block: randomVal(1, 3),
-    },
-    {
-      name: "The Bored Ape",
-      currentHealth: randomVal(20, 56),
-      isBoss: true,
-      maxHealth: 100,
-
-      attack: randomVal(1, 7),
-      block: randomVal(2, 10),
-    },
-    {
-      name: "The Zucc",
-      currentHealth: randomVal(20, 60),
-      isBoss: true,
-      maxHealth: 90,
-
-      attack: randomVal(5, 20),
-      block: randomVal(5, 25),
-    },
-    {
-      name: "Elon Musk's Crypto Wallet",
-      currentHealth: randomVal(28, 40),
-      isBoss: true,
-      maxHealth: 85,
-
-      attack: randomVal(5, 25),
-      block: randomVal(1, 30),
-    },
-  ]);
-  console.log("enemies seeded");
-  // delete players
-  await Player.deleteMany();
-  // create dummy accounts with starter deck
-  await Player.create({
-    userName: "PlayerName1",
-    email: "player1@test.com",
-    password: "password12345",
-    maxHealth: 100,
-    currentHealth: 90,
-    cards: [
-      cards[5]._id,
-      cards[6]._id,
-      cards[7]._id,
-      cards[8]._id,
-      cards[9]._id,
-      cards[18]._id,
-      cards[19]._id,
-      cards[20]._id,
-      cards[17]._id,
-      cards[22]._id,
-    ],
-  });
-
-  await Player.create({
-    userName: "PlayerName2",
-    email: "player2@test.com",
-    password: "password12345",
-    maxHealth: 100,
-    currentHealth: 90,
-    cards: [
-      cards[0]._id,
-      cards[1]._id,
-      cards[2]._id,
-      cards[3]._id,
-      cards[4]._id,
-      cards[14]._id,
-      cards[15]._id,
-      cards[16]._id,
-      cards[17]._id,
-      cards[21]._id,
-    ],
-  });
-  console.log("Players seeded");
-  // delete old rooms
-  await Room.deleteMany();
-  // create new rooms
-  const rooms = await Room.insertMany([
-    {
-      id: 0,
-      bgImage: "./assets/bgImage1",
-      enemies: [
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-      ],
-    },
     {
       id: 1,
-      bgImage: "./assets/bgImage2",
-      enemies: [
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-      ],
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [2],
+      title: 'How is my JavaScript looking? Still getting used to the language.',
+      post_body: `
+      let customers = [
+        { id: 0, name: 'paul' },
+        { id: 1, name: 'jeff' },
+        { id: 2, name: 'mary' }
+      ];
+      let customer = customers.find(cust => cust.name === 'jeff');
+      console.log(customer);
+      --> { id: 1, name: 'jeff' }`,
+      vote_count: 2,
+      user_id: 1,
+      tag_genre: 'Advice',
+      tag_language: 'Javascript'
     },
     {
       id: 2,
-      bgImage: "./assets/bgImage2",
-      enemies: [
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-        enemies[randomVal(0, 12)]._id,
-      ],
-    },
-  ]);
-  console.log("Rooms seeded");
-  // delete Stocks
-  await Stock.deleteMany();
-  // Add dummy stocks
-  // TODO: Might seed the whole thing with stocks
-  const stocks = await Stock.insertMany([
-    {
-      id: 1,
-      name: "Apple",
-      symbol: "APPL",
-      quote: 151.18,
-      percentChange: -7,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'Lol, funny Java. Slacking off at the office, just thought I should share.',
+      post_body: `
+      String a = String.valueOf(2);   //integer to numeric string
+      int i = Integer.parseInt(a); //numeric string to an int`,
+      vote_count: 2,
+      user_id: 2,
+      tag_genre: 'Funny',
+      tag_language: 'Java'
     },
     {
-      id: 2,
-      name: "Tesla",
-      symbol: "TSLA",
-      quote: 831.12,
-      percentChange: -18,
+      id: 3,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [6],
+      title: 'Is this the proper way to style a checkbox? I feel I could be doing something better.',
+      post_body: `
+      .checkbox-container {
+          box-sizing: border-box;
+          background: #ffffff;
+          color: #222;
+          height: 64px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-flow: row wrap;
+      }
+      `,
+      vote_count: 2,
+      user_id: 3,
+      tag_genre: 'Advice',
+      tag_language: 'CSS'
     },
-  ]);
-  console.log("Stocks seeded");
-
-  // Crazy dungeon seeding stuff
-  // delete old dungeon
-  await Dungeon.deleteMany();
-  const numDungeons = 10;
-  for (let i = 0; i < numDungeons; i++) {
-    //const element = array[i];
-    // console.log("Index: ", i);
-
-    const dungeons = await Dungeon.create([
+    {
+      id: 4,
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [2],
+      title: 'Literally an arrow. Not even an => just ->',
+      post_body: `
+      public static int[] filterNonUnique(int[] elements) {
+        return Arrays.stream(elements)
+            .filter(el -> indexOf(elements, el) == lastIndexOf(elements, el))
+            .toArray();
+      }
+      `,
+      vote_count: 2,
+      user_id: 4,
+      tag_genre: 'Funny',
+      tag_language: 'Java'
+    },
+    {
+      id: 5,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'I come from a Java background, new to C# so I want to know if there is a better way of doing this :)',
+      post_body: `
+      // Enter "vmethod2 [Tab]", then...  
+      public virtual void MyMethod(object arg1, object arg2)  {
+          throw new NotImplementedException();
+      }
+  
+      // Enter "vmethod3 [Tab]", then...  
+      public virtual void MyMethod(object arg1, object arg2, object arg3)  {
+          throw new NotImplementedException();
+      }
+      `,
+      vote_count: 2,
+      user_id: 5,
+      tag_genre: 'Advice',
+      tag_language: 'C#'
+    },
+    {
+      id: 6,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [6],
+      title: 'C++ pls...',
+      post_body: `
+      Cout width example
+  
+      //illustrates setting cout width 
+      #include <iostream.h>
+      #include <stdlib.h>
+      #include <iomanip.h>
+      
+      int main()
       {
-        dungeonId: i,
-        rooms: [
-          rooms[randomVal(0, 2)]._id,
-          rooms[randomVal(0, 2)]._id,
-          rooms[randomVal(0, 2)]._id,
-        ],
-        rewards: [
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-          cards[randomVal(0, 24)]._id,
-        ],
-        finalBoss: [enemies[randomVal(13, 15)]._id],
-      },
-    ]);
-    //console.log(cards[i].id);
-    //console.log(dungeons);
-  }
+      
+        cout<<setw(20)<<"setw(20)"<<endl;
+        cout<<setw(10)<<"setw(10)"<<endl;
+        cout<<setw(15)<<"setw(15)"<<endl;
+        
+        return 0;
+      }
+      `,
+      vote_count: 2,
+      user_id: 6,
+      tag_genre: 'Funny',
+      tag_language: 'C++'
+    },
+    {
+      id: 7,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [2],
+      title: 'Alright, so the CTO is forcing us to change from Python to a PHP backend and I have no idea what I am doing... Any advice for this?',
+      post_body: `
+      $result = $mysqli->query('SELECT * FROM students');
+      while ($row = $result->fetch_assoc()) {
+        echo $row['name'] . '<br>';
+      }`,
+      vote_count: 2,
+      user_id: 7,
+      tag_genre: 'Advice',
+      tag_language: 'PHP'
+    },
+    {
+      id: 8,
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [6],
+      title: 'What is the meaning of int here? I feel like this syntax is a bit funny.',
+      post_body: `
+      ## Taking Two Integers as input
+      a, b = map(int,input().split())
+      print("a:",a)
+      print("b:",b)
+      
+      ## Taking a List as input
+      arr = list(map(int,input().split()))
+      print("Input List:",arr)`,
+      vote_count: 2,
+      user_id: 8,
+      tag_genre: 'Funny',
+      tag_language: 'Python'
+    },
+    {
+      id: 9,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [2],
+      title: 'Storing an array of objects, but it feels wrong for actual customer data. Should I be doing something different?',
+      post_body: `
+      let customers = [
+        { id: 0, name: 'paul' },
+        { id: 1, name: 'jeff' },
+        { id: 2, name: 'mary' }
+      ];
+      let customer = customers.find(cust => cust.name === 'jeff');
+      console.log(customer);
+      --> { id: 1, name: 'jeff' }`,
+      vote_count: 2,
+      user_id: 9,
+      tag_genre: 'Advice',
+      tag_language: 'Javascript'
+    },
+    {
+      id: 10,
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [6],
+      title: 'Commas... :^)',
+      post_body: `<input type="file" name="my_image" accept="image/gif,image/jpeg,image/jpg,image/png">`,
+      vote_count: 2,
+      user_id: 10,
+      tag_genre: 'Funny',
+      tag_language: 'HTML'
+    },
+    {
+      id: 11,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [2],
+      title: 'With the .checkbox span:first-child, we are getting the first-child as the class right? Just want some clarification',
+      post_body: `
+      .checkbox span:first-child {
+          position: relative;
+          flex: 0 0 18px;
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
+          transform: scale(1);
+          border: 1px solid #cccfdb;
+          transition: all 0.3s ease;
+      }`,
+      vote_count: 2,
+      user_id: 10,
+      tag_genre: 'Advice',
+      tag_language: 'CSS'
+    },
+    {
+      id: 12,
+      upVoted_user_ids: [1],
+      downVoted_user_ids: [6],
+      title: 'Funny date formating in Java.',
+      post_body: `java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);`,
+      vote_count: 2,
+      user_id: 9,
+      tag_genre: 'Funny',
+      tag_language: 'Java'
+    },
+    {
+      id: 13,
+      upVoted_user_ids: [5],
+      downVoted_user_ids: [6],
+      title: 'By making the methods public, that means that they can be accessed globally across the entire file structure, right? Or am I missing something...',
+      post_body: `
+      // Enter "method [Tab]", then...  
+      public void MyMethod()  {
+          throw new NotImplementedException();
+      }
+      
+      // Enter "method1 [Tab]", then...  
+      public void MyMethod(object arg)  {
+          throw new NotImplementedException();
+      }`,
+      vote_count: 2,
+      user_id: 8,
+      tag_genre: 'Advice',
+      tag_language: 'C#'
+    },
+    {
+      id: 14,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'Today is the first day I tried to use C++. Today is also the last :)',
+      post_body: `
+      Average
+  
+      #include <iostream.h>
+      #include <math.h> 
+      int main()
+      {
+        int number1,number2,number3;
+        double average;
+        
+        cout<<"Enter three integers and I will display the average"<<endl;
+        cin>>number1>>number2>>number3;
+        average = (number1 + number2 + number3) / 3.0;
+        cout<<"The average is "<<average<<endl;
+        
+        return 0;
+      }`,
+      vote_count: 8,
+      user_id: 7,
+      tag_genre: 'Funny',
+      tag_language: 'C++'
+    },
+    {
+      id: 15,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'Changing around some code, but I am not sure if this is correct in PHP. Not getting any errors, but the while loop is not working. Whats wrong?',
+      post_body: `
+      $result = $mysqli->query('SELECT * FROM students');
+      while ($row = $result->fetch_assoc()) 
+        echo $row['name'] . '<br>';
+      }`,
+      vote_count: 45,
+      user_id: 6,
+      tag_genre: 'Advice',
+      tag_language: 'PHP'
+    },
+    {
+      id: 16,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'So, map takes in two integers but it literally is using the same syntax as javascript would use on a string.',
+      post_body: `
+      ## Taking Two Integers as input
+      a, b = map(int,input().split())
+      print("a:",a)
+      print("b:",b)
+      
+      ## Taking a List as input
+      arr = list(map(int,input().split()))
+      print("Input List:",arr)`,
+      vote_count: 5,
+      user_id: 5,
+      tag_genre: 'Funny',
+      tag_language: 'Python'
+    },
+    {
+      id: 17,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'Would the keys hewre be the name before the semicolon?',
+      post_body: `
+      let myObject = { one: 1, two: 2, three: 3 };
+      Object.keys(myObject).forEach((key, value) => {
+        //...do something
+        console.log(key, value);
+      });`,
+      vote_count: 23,
+      user_id: 4,
+      tag_genre: 'Advice',
+      tag_language: 'Javascript'
+    },
+    {
+      id: 18,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'What is this weird string in pattern??? lol',
+      post_body: `<input type="text" title="email_address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" />`,
+      vote_count: 1,
+      user_id: 3,
+      tag_genre: 'Funny',
+      tag_language: 'HTML'
+    },
+    {
+      id: 5,
+      upVoted_user_ids: [3],
+      downVoted_user_ids: [4],
+      title: 'What is the difference between :: and : ? It looks like you can use :: stand alone maybe?',
+      post_body: `
+      ::selection {
+        background: aquamarine;
+        color: black;
+      }
+      
+      .custom-text-selection::selection {
+        background: deeppink;
+        color: white;
+      }`,
+      vote_count: 320,
+      user_id: 2,
+      tag_genre: 'Advice',
+      tag_language: 'CSS'
+    },
+    {
+      title: 'Why does the MM upper case but dd and yyyy are lowercase? Kinda funny.',
+      post_body:  `
+      SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );
+      Date date = format.parse( myString );
+      `,
+      vote_count: 148,
+      user_id: 1,
+      tag_genre: 'Funny',
+      tag_language: 'Java'
+    },
+    {
+      title: 'Advice for a C++ developer trying to get into C#? Not used to this syntax at all and would like some advice.',
+      post_body: `
+      // Enter "imethod [Tab]", then...  
+      public void MyMethod();
+      
+      // Enter "imethod1 [Tab]", then...  
+      public void MyMethod(object arg);`,
+      vote_count: 2,
+      user_id: 2,
+      tag_genre: 'Advice',
+      tag_language: 'C#'
+    },
+    {
+      title: 'Funny >> << lol',
+      post_body: `
+      Area of rectangle
+  
+      #include <iostream> 
+      using namespace std; 
+      
+      const double pi = 3.14159; 
+      
+      int main() 
+      { 
+        float length, width, area; 
+        
+        cout << "Enter The Length Of The Rectangle: "; 
+        cin >> length; 
+        cout << "Enter The Width Of Rectangle: "; 
+        cin >> width; 
+        area = length*width; 
+        
+        cout <<"The area of the rectangle is : "<< area << endl;
+        
+        return 0; 
+      }
+      `,
+      vote_count: 15,
+      user_id: 3,
+      tag_genre: 'Funny',
+      tag_language: 'C++'
+    },
+
+   
+  ]);
+  console.log("Posts seeded");
+  // delete Users
+  await User.deleteMany();
+  // create a couple users
+  await User.create({
+    id: 1,
+    userName: "TestName1",
+    email: "Test1@test.com",
+    title: "Junior Developer",
+    bio: "Test bio",
+    github: "r2d2",
+    avatar: "avatar1.png",
+    password: "pass1234",
+   
+  });
+
+  await User.create({
+    id: 2,
+    userName: "TestName2",
+    email: "test2@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 2",
+    github: "c3p0",
+    avatar: "avatar2.png",
+    password: "pass1234",
+
+  });
+  console.log("Users seeded");
+ 
+ 
 
   process.exit();
 });
 
-function randomVal(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
