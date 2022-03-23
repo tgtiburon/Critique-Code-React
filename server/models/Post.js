@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-    
+
     id: {
         type: Number,
         required: true
     },
 
     votes: {
-        type: Integer,
+        type: Number,
         required: true
     },
 
