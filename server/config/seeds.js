@@ -342,15 +342,99 @@ db.once("open", async () => {
   ]);
   console.log("Comments seeded");
   //#endregion
+
+  //#region  Users
+  // delete Users
+  await User.deleteMany();
+  // create a couple users
+  let users = [];
+  users[0] = await User.create({
+    id: 0,
+    userName: "TestName1",
+    email: "Test1@test.com",
+    title: "Junior Developer",
+    bio: "Test bio",
+    github: "r2d2",
+    avatar: "avatar1.png",
+    password: "pass1234",
+  });
+
+  users[1] = await User.create({
+    id: 1,
+    userName: "TestName2",
+    email: "test2@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 2",
+    github: "c3p0",
+    avatar: "avatar2.png",
+    password: "pass1234",
+  });
+  users[2] = await User.create({
+    id: 2,
+    userName: "TestName3",
+    email: "test3@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 3",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+  });
+  users[3] = await User.create({
+    id: 3,
+    userName: "TestName4",
+    email: "test4@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 4",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+  });
+  users[4] = await User.create({
+    id: 4,
+    userName: "TestName5",
+    email: "test5@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 5",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+  });
+  users[5] = await User.create({
+    id: 5,
+    userName: "TestName6",
+    email: "test6@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 6",
+    github: "r2d2",
+    avatar: "avatar3.png",
+    password: "pass1234",
+  });
+  users[6] = await User.create({
+    id: 6,
+    userName: "TestName7",
+    email: "test7@test.com",
+    title: "Senior Developer",
+    bio: "Test bio 7",
+    github: "r2d2",
+    avatar: "avatar1.png",
+    password: "pass1234",
+  });
+  //console.log("USER=", users);
+
+  console.log("Users seeded");
+  //#endregion
+
   //#region Post
   // delete all posts
   await Post.deleteMany();
   // Add all the new posts
+  // TODO:
+
   const posts = await Post.insertMany([
     {
       id: 1,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[1]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "How is my JavaScript looking? Still getting used to the language.",
       post_body: `
@@ -369,8 +453,8 @@ db.once("open", async () => {
     },
     {
       id: 2,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[1]._id],
       title:
         "Lol, funny Java. Slacking off at the office, just thought I should share.",
       post_body: `
@@ -383,8 +467,8 @@ db.once("open", async () => {
     },
     {
       id: 3,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[5]._id],
+      downVoted_user_ids: [users[1]._id],
       title:
         "Is this the proper way to style a checkbox? I feel I could be doing something better.",
       post_body: `
@@ -406,8 +490,8 @@ db.once("open", async () => {
     },
     {
       id: 4,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[1]._id],
+      downVoted_user_ids: [users[2]._id],
       title: "Literally an arrow. Not even an => just ->",
       post_body: `
       public static int[] filterNonUnique(int[] elements) {
@@ -423,17 +507,17 @@ db.once("open", async () => {
     },
     {
       id: 5,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[4]._id],
       title:
         "I come from a Java background, new to C# so I want to know if there is a better way of doing this :)",
       post_body: `
-      // Enter "vmethod2 [Tab]", then...  
+      // Enter "vmethod2 [Tab]", then...
       public virtual void MyMethod(object arg1, object arg2)  {
           throw new NotImplementedException();
       }
-  
-      // Enter "vmethod3 [Tab]", then...  
+
+      // Enter "vmethod3 [Tab]", then...
       public virtual void MyMethod(object arg1, object arg2, object arg3)  {
           throw new NotImplementedException();
       }
@@ -445,24 +529,24 @@ db.once("open", async () => {
     },
     {
       id: 6,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[4]._id],
       title: "C++ pls...",
       post_body: `
       Cout width example
-  
-      //illustrates setting cout width 
+
+      //illustrates setting cout width
       #include <iostream.h>
       #include <stdlib.h>
       #include <iomanip.h>
-      
+
       int main()
       {
-      
+
         cout<<setw(20)<<"setw(20)"<<endl;
         cout<<setw(10)<<"setw(10)"<<endl;
         cout<<setw(15)<<"setw(15)"<<endl;
-        
+
         return 0;
       }
       `,
@@ -473,8 +557,8 @@ db.once("open", async () => {
     },
     {
       id: 7,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "Alright, so the CTO is forcing us to change from Python to a PHP backend and I have no idea what I am doing... Any advice for this?",
       post_body: `
@@ -489,8 +573,8 @@ db.once("open", async () => {
     },
     {
       id: 8,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[6]._id],
       title:
         "What is the meaning of int here? I feel like this syntax is a bit funny.",
       post_body: `
@@ -498,7 +582,7 @@ db.once("open", async () => {
       a, b = map(int,input().split())
       print("a:",a)
       print("b:",b)
-      
+
       ## Taking a List as input
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
@@ -509,8 +593,8 @@ db.once("open", async () => {
     },
     {
       id: 9,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[0]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "Storing an array of objects, but it feels wrong for actual customer data. Should I be doing something different?",
       post_body: `
@@ -529,8 +613,8 @@ db.once("open", async () => {
     },
     {
       id: 10,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[6]._id],
       title: "Commas... :^)",
       post_body: `<input type="file" name="my_image" accept="image/gif,image/jpeg,image/jpg,image/png">`,
       vote_count: 2,
@@ -540,8 +624,8 @@ db.once("open", async () => {
     },
     {
       id: 11,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[5]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "With the .checkbox span:first-child, we are getting the first-child as the class right? Just want some clarification",
       post_body: `
@@ -562,8 +646,8 @@ db.once("open", async () => {
     },
     {
       id: 12,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[6]._id],
       title: "Funny date formating in Java.",
       post_body: `java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);`,
       vote_count: 2,
@@ -573,17 +657,17 @@ db.once("open", async () => {
     },
     {
       id: 13,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[0]._id],
+      downVoted_user_ids: [users[6]._id],
       title:
         "By making the methods public, that means that they can be accessed globally across the entire file structure, right? Or am I missing something...",
       post_body: `
-      // Enter "method [Tab]", then...  
+      // Enter "method [Tab]", then...
       public void MyMethod()  {
           throw new NotImplementedException();
       }
-      
-      // Enter "method1 [Tab]", then...  
+
+      // Enter "method1 [Tab]", then...
       public void MyMethod(object arg)  {
           throw new NotImplementedException();
       }`,
@@ -594,25 +678,25 @@ db.once("open", async () => {
     },
     {
       id: 14,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[5]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "Today is the first day I tried to use C++. Today is also the last :)",
       post_body: `
       Average
-  
+
       #include <iostream.h>
-      #include <math.h> 
+      #include <math.h>
       int main()
       {
         int number1,number2,number3;
         double average;
-        
+
         cout<<"Enter three integers and I will display the average"<<endl;
         cin>>number1>>number2>>number3;
         average = (number1 + number2 + number3) / 3.0;
         cout<<"The average is "<<average<<endl;
-        
+
         return 0;
       }`,
       vote_count: 2,
@@ -622,13 +706,13 @@ db.once("open", async () => {
     },
     {
       id: 15,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[0]._id],
+      downVoted_user_ids: [users[6]._id],
       title:
         "Changing around some code, but I am not sure if this is correct in PHP. Not getting any errors, but the while loop is not working. Whats wrong?",
       post_body: `
       $result = $mysqli->query('SELECT * FROM students');
-      while ($row = $result->fetch_assoc()) 
+      while ($row = $result->fetch_assoc())
         echo $row['name'] . '<br>';
       }`,
       vote_count: 2,
@@ -638,8 +722,8 @@ db.once("open", async () => {
     },
     {
       id: 16,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[1]._id],
+      downVoted_user_ids: [users[2]._id],
       title:
         "So, map takes in two integers but it literally is using the same syntax as javascript would use on a string.",
       post_body: `
@@ -647,7 +731,7 @@ db.once("open", async () => {
       a, b = map(int,input().split())
       print("a:",a)
       print("b:",b)
-      
+
       ## Taking a List as input
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
@@ -658,8 +742,8 @@ db.once("open", async () => {
     },
     {
       id: 17,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[4]._id],
       title: "Would the keys hewre be the name before the semicolon?",
       post_body: `
       let myObject = { one: 1, two: 2, three: 3 };
@@ -674,8 +758,8 @@ db.once("open", async () => {
     },
     {
       id: 18,
-      upVoted_user_ids: [1],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [users[1]._id],
+      downVoted_user_ids: [users[4]._id],
       title: "What is this weird string in pattern??? lol",
       post_body: `<input type="text" title="email_address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" />`,
       vote_count: 2,
@@ -685,8 +769,8 @@ db.once("open", async () => {
     },
     {
       id: 19,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [6],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[6]._id],
       title:
         "What is the difference between :: and : ? It looks like you can use :: stand alone maybe?",
       post_body: `
@@ -694,7 +778,7 @@ db.once("open", async () => {
         background: aquamarine;
         color: black;
       }
-      
+
       .custom-text-selection::selection {
         background: deeppink;
         color: white;
@@ -706,8 +790,8 @@ db.once("open", async () => {
     },
     {
       id: 20,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [users[5]._id],
+      downVoted_user_ids: [users[4]._id],
       title:
         "Why does the MM upper case but dd and yyyy are lowercase? Kinda funny.",
       post_body: `
@@ -721,15 +805,15 @@ db.once("open", async () => {
     },
     {
       id: 21,
-      upVoted_user_ids: [3],
-      downVoted_user_ids: [4],
+      upVoted_user_ids: [users[3]._id],
+      downVoted_user_ids: [users[4]._id],
       title:
         "Advice for a C++ developer trying to get into C#? Not used to this syntax at all and would like some advice.",
       post_body: `
-      // Enter "imethod [Tab]", then...  
+      // Enter "imethod [Tab]", then...
       public void MyMethod();
-      
-      // Enter "imethod1 [Tab]", then...  
+
+      // Enter "imethod1 [Tab]", then...
       public void MyMethod(object arg);`,
       vote_count: 2,
       user_id: 2,
@@ -738,30 +822,30 @@ db.once("open", async () => {
     },
     {
       id: 22,
-      upVoted_user_ids: [5],
-      downVoted_user_ids: [2],
+      upVoted_user_ids: [users[5]._id],
+      downVoted_user_ids: [users[2]._id],
       title: "Funny >> << lol",
       post_body: `
       Area of rectangle
-  
-      #include <iostream> 
-      using namespace std; 
-      
-      const double pi = 3.14159; 
-      
-      int main() 
-      { 
-        float length, width, area; 
-        
-        cout << "Enter The Length Of The Rectangle: "; 
-        cin >> length; 
-        cout << "Enter The Width Of Rectangle: "; 
-        cin >> width; 
-        area = length*width; 
-        
+
+      #include <iostream>
+      using namespace std;
+
+      const double pi = 3.14159;
+
+      int main()
+      {
+        float length, width, area;
+
+        cout << "Enter The Length Of The Rectangle: ";
+        cin >> length;
+        cout << "Enter The Width Of Rectangle: ";
+        cin >> width;
+        area = length*width;
+
         cout <<"The area of the rectangle is : "<< area << endl;
-        
-        return 0; 
+
+        return 0;
       }
       `,
       vote_count: 2,
@@ -771,85 +855,6 @@ db.once("open", async () => {
     },
   ]);
   console.log("Posts seeded");
-  //#endregion
-
-  //#region  Users
-  // delete Users
-  await User.deleteMany();
-  // create a couple users
-  await User.create({
-    id: 1,
-    userName: "TestName1",
-    email: "Test1@test.com",
-    title: "Junior Developer",
-    bio: "Test bio",
-    github: "r2d2",
-    avatar: "avatar1.png",
-    password: "pass1234",
-  });
-
-  await User.create({
-    id: 2,
-    userName: "TestName2",
-    email: "test2@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 2",
-    github: "c3p0",
-    avatar: "avatar2.png",
-    password: "pass1234",
-  });
-  await User.create({
-    id: 3,
-    userName: "TestName3",
-    email: "test3@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 3",
-    github: "r2d2",
-    avatar: "avatar3.png",
-    password: "pass1234",
-  });
-  await User.create({
-    id: 4,
-    userName: "TestName4",
-    email: "test4@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 4",
-    github: "r2d2",
-    avatar: "avatar3.png",
-    password: "pass1234",
-  });
-  await User.create({
-    id: 5,
-    userName: "TestName5",
-    email: "test5@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 5",
-    github: "r2d2",
-    avatar: "avatar3.png",
-    password: "pass1234",
-  });
-  await User.create({
-    id: 6,
-    userName: "TestName6",
-    email: "test6@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 6",
-    github: "r2d2",
-    avatar: "avatar3.png",
-    password: "pass1234",
-  });
-  await User.create({
-    id: 7,
-    userName: "TestName7",
-    email: "test7@test.com",
-    title: "Senior Developer",
-    bio: "Test bio 7",
-    github: "r2d2",
-    avatar: "avatar1.png",
-    password: "pass1234",
-  });
-
-  console.log("Users seeded");
   //#endregion
 
   process.exit();
