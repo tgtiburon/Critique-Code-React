@@ -2,14 +2,11 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
+
+
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
-
   userName: {
     type: String,
     required: true,
@@ -49,7 +46,19 @@ const userSchema = new Schema({
   avatar: {
     type: String,
     required: false,
+    // TODO: Maybe avatar default
   },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Post"
+    }
+  ]
+},
+{
+  toJSON: {
+    virtuals: true
+  }
 });
 
 // pre-save middleware to create password
@@ -68,5 +77,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const User = mongoose.model("User", userSchema);
+
+
 
 module.exports = User;
