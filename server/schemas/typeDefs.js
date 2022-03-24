@@ -1,4 +1,4 @@
-const {gql } = require("apollo-server-express");
+const { gql } = require("apollo-server-express");
 
 // TODO: We will probably change the way comments work
 const typeDefs = gql `
