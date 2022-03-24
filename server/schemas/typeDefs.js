@@ -1,29 +1,30 @@
 const { gql } = require("apollo-server-express");
 
 // TODO: We will probably change the way comments work
-const typeDefs = gql `
+const typeDefs = gql`
     type Post {
-        id: ID
+        _id: ID
         upVoted_user_ids: [User]
         downVoted_user_ids: [User]
         title: String
         post_body: String
         vote_count: Int
-        user_id: Int
         tag_genre: String
         tag_language: String
+        createdAt: String
+        comments: [Comment]
     }
 
     type Comment {
-        id: ID
+        _id: ID
         comment_body: String
-        user_id: 6
-        post_id: 1
+        createdAt: String
+        userName: String
 
     }
 
     type User {
-        id: ID
+        _id: ID
         userName: String
         email: String
         title: String
@@ -31,6 +32,7 @@ const typeDefs = gql `
         github: String
         avatar: String
         password: String
+        posts: [Post]
 
     }
 
@@ -69,6 +71,5 @@ const typeDefs = gql `
     }
 
 `;
-
 
 module.exports = typeDefs;

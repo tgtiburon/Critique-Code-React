@@ -1,26 +1,36 @@
 const mongoose = require('mongoose');
+//const { format_date } = require('../utils/helpers');
+
 
 const { Schema } = mongoose;
 
 const commentSchema = new Schema({
-    id: {
-        type: Number,
+    // id: {
+    //     type: Number,
+    //     required: true
+    // },
+    userName: {
+        type: String,
         required: true
     },
 
     comment_body: {
         type: String,
-        required: true
+        required: true,
+        maxlength: 560
     },
 
-    user_id: {
-        type: Number,
-        required: true
-    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+       // get: timestamp => format_date(timestamp)
+        
+    }  
+},
 
-    post_id: {
-        type: Number,
-        required: true
+{
+    toJSON: {
+        getters: true
     }
 });
 
