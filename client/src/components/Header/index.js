@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../assets/css/create-post.css';
 
 function Header () {
   return (

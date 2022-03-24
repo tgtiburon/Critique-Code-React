@@ -3,17 +3,17 @@ import '../../assets/css/create-post.css';
 
 function SidePanel() {
     return (
-    <section class="sidebar-right">
-        <div class="inner-side">
-            <div class="header-card">
-                <h3>We're <span class="ital">Not </span>Stack Overflow</h3>
+    <section className="sidebar-right">
+        <div className="inner-side">
+            <div className="header-card">
+                <h3>We're <span className="ital">Not </span>Stack Overflow</h3>
                     </div>
-                        <div class="about-section">
-                            <p>Welcome to Reddit <span class="ital">uhh I mean</span> Welcome to Critique Code.
+                        {/* <div className="about-section">
+                            <p>Welcome to Reddit <span className="ital">uhh I mean</span> Welcome to Critique Code.
                             Are you tired of getting incessantly cyber-bullied on Stack Overflow? Are you tired of
                             feeling like a terrible coder who has no business opening up their IDE everyday?
                             <br>
-                            <span class="ital">
+                            <span className="ital">
                             Welcome to Reddit dot com
                             </span>
                             </br>
@@ -24,14 +24,14 @@ function SidePanel() {
                             Are you painfully average and just looking to share the dumbest for loop you could think of
                             writing?
                             </br>
-                            <span class="ital">
+                            <span className="ital">
                             Welcome to Critique Reddit Overflow
                             </span>
                             </p>
-                        </div>
-                    <div class="create-button">
-                <button id="create-post-btn" class="create-post auth-btns">Create a post</button>
-                <button id="other-login-btn" class="create-post auth-btns">Create a post</button>
+                        </div> */}
+                    <div className="create-button">
+                <button id="create-post-btn" className="create-post auth-btns">Create a post</button>
+                <button id="other-login-btn" className="create-post auth-btns">Create a post</button>
             </div>
         </div>
     </section>
