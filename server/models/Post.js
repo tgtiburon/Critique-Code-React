@@ -8,11 +8,18 @@ const postSchema = new Schema({
         type: Number,
         required: true
     },
-
-    votes: {
-        type: Number,
-        required: true
-    },
+    upVoted_user_ids: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
+    downVoted_user_ids: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
 
     title: {
         type: String,
