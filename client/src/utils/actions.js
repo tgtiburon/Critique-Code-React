@@ -1,0 +1,2 @@
+export const UPVOTED_POSTS = 'UPVOTED_POSTS';
+export const DOWNVOTED_POSTS = 'DOWNVOTED_POSTS';
