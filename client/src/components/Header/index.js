@@ -3,6 +3,7 @@ import Login from '../Login';
 
 function Header () {
   const [isOpen, setIsOpen] = useState(false);
+  
   return (
     <section className="top">
       <div className="blur-head">
@@ -10,7 +11,10 @@ function Header () {
           {/* Change this to render only if logged in */}
           <button id="logout-btn" className="auth-btns">Log Out</button>
           <button onClick={() => setIsOpen(true)} id="login-btn" className="auth-btns">Log In/ <span>Sign Up</span></button>
-          <Login open={isOpen} onClose={() => setIsOpen(false)} />
+          <Login 
+          open={isOpen} 
+          onClose={() => setIsOpen(false)}
+           />
         </div>
 
         <header className="h-title-container">

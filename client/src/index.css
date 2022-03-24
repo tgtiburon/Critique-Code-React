@@ -267,9 +267,9 @@
 
 .overlay_panel {
     align-items: center;
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
-    height: 10%;
+    height: 100%;
     /* backdrop-filter: blur(3px); */
     justify-content: center;
     position: absolute;

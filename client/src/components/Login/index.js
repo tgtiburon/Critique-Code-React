@@ -15,16 +15,16 @@ function Login ({open, onClose}) {
 
   return (
     <div style={MODAL_STYLES}>
-      <div id="signup-modal" className="modal" style="display: block;">
+      <div id="signup-modal" className="modal">
         <div className="modal-content container right-panel-active">
           <div className="container_form container_signup">
                 <form className="form" id="form1">
                   <h2 className="form_title">Join in on the fun!</h2>
-                  <input type="text" className="input" placeholder="Email" id="email-signup" autocomplete="off" />
-                  <input type="text" className="input" placeholder="Username" id="username-signup" autocomplete="off" />
-                  <input type="text" className="input" placeholder="Github" id="github-signup" autocomplete="off" />
-                  <input type="text" className="input" placeholder="Password" id="password-signup" autocomplete="off" />
-                    <button type="submit" className="auth-button" id="unique-btn" onClick={onClose}>Sign Up</button>
+                  <input type="text" className="input" placeholder="Email" id="email-signup" autoComplete="off" />
+                  <input type="text" className="input" placeholder="Username" id="username-signup" autoComplete="off" />
+                  <input type="text" className="input" placeholder="Github" id="github-signup" autoComplete="off" />
+                  <input type="text" className="input" placeholder="Password" id="password-signup" autoComplete="off" />
+                    <button type="submit" className="auth-button" id="unique-btn">Sign Up</button>
                 </form>
             </div>
 
@@ -37,7 +37,7 @@ function Login ({open, onClose}) {
               </form>
             </div>
 
-            <div className="container_overlay">
+            {/* <div className="container_overlay">
               <div className="overlay">
                 <span className="close">x</span>
                 <div className="overlay_panel overlay_left">
@@ -47,7 +47,7 @@ function Login ({open, onClose}) {
                   <button className="auth-button" id="signUp">Sign Up</button>
                 </div>
               </div>
-            </div>
+            </div> */}
             
         </div>
 
