@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+
+import Auth from '../../utils/auth';
 
 const MODAL_STYLES = {
   position: 'fixed',
