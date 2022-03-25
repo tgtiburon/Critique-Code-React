@@ -56,9 +56,11 @@ export const CREATE_POST = gql`
 export const ADD_COMMENT = gql`
     mutation addComment(
         $comment_body: String!
+        $userName: String!
         ) {
         addComment(
             comment_body: $comment_body
+            userName: $userName
         )
     }
 `;
