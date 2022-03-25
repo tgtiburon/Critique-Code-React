@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 /* 
     WE WANT TO BE ABLE TO QUERY USER CONTENT CONDITIONALLY
 
@@ -8,63 +8,68 @@ import { gql } from '@apollo/client';
 */
 
 export const QUERY_ALL_POSTS = gql`
-    {
-        posts {
-            _id
-            upVoted_user_ids
-            downVoted_user_ids
-            title
-            post_body
-            vote_count
-            user_id
-            tag_genre
-            tag_language
-        }
+  query posts {
+    posts {
+      _id
+      upVoted_user_ids
+      downVoted_user_ids
+      title
+      post_body
+      vote_count
+      tag_genre
+      tag_language
+      createdAt
+      comments {
+        _id
+      }
     }
+  }
 `;
 
 export const QUERY_ALL_COMMENTS = gql`
-    {
-        comments {
-            _id
-            comment_body
-            user_id
-            post_id
-        }
+  query comments($id: ID!) {
+    comments(_id: $id) {
+      _id
+      comment_body
+      createdAt
+      userName
     }
+  }
 `;
 // we probably want more info on user query (comments, post info (???))
 export const QUERY_USER = gql`
-    {
-        user {
-            userName
-            email
-            title
-            bio
-            github
-            avatar
-            password
-            posts {
-                _id
-                title
-                postId
-            }
-        }
+  query user($userName: String!) {
+    user(userName: $username) {
+      _id
+      userName
+      email
+      title
+      bio
+      github
+      avatar
+      password
+      posts {
+        _id
+        title
+        createdAt
+      }
     }
+  }
 `;
 
 export const QUERY_POST = gql`
-    {
-        post {
-            _id
-            upVoted_user_ids
-            downVoted_user_ids
-            title
-            post_body
-            vote_count
-            user_id
-            tag_genre
-            tag_language
-        }
+  query post($id: ID!) {
+    post(_id: $id) {
+      _id
+      upVoted_user_ids
+      downVoted_user_ids
+      title
+      post_body
+      vote_count
+      tag_genre
+      tag_language
+      createdAt
+      comments
     }
+  }
 `;
