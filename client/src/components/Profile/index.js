@@ -5,7 +5,7 @@ function Profile() {
     <section className="side-info">
         <section className="sidebar-right">
             <div className="inner-side">
-                <div class="header-card">
+                <div className="header-card">
                     <button className="edit-post auth-btns" id="edit-profile-btn">Edit</button>
                             <h3 id="user-username"></h3>
                         <div>

@@ -1,15 +1,15 @@
 import React, { createContext, useContext } from 'react';
+import { useAppReducer } from './reducers';
 
 const AppContext = createContext();
 const { Provider } = AppContext;
 
 const AppProvider = ({ value: [], ...props}) => {
     const [state, dispatch] = useAppReducer({
-        /*
-        
-        NEED TO ADD GLOBAL STATE OBJECTS HERE
-        
-        */
+        activeTimeline: [],
+        upVotedPosts: [],
+        downVotedPosts: [],
+        userData: [],
     });
     return <Provider value={[state, dispatch]} {...props} />;
 };
