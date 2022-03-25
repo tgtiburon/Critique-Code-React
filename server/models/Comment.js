@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//const { format_date } = require('../utils/helpers');
+const { format_date } = require('../utils/helpers');
 
 
 const { Schema } = mongoose;
@@ -23,7 +23,7 @@ const commentSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-       // get: timestamp => format_date(timestamp)
+        get: timestamp => format_date(timestamp)
         
     }  
 },

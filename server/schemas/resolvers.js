@@ -4,7 +4,7 @@ const { User, Post, Comment } = require("../models");
 const auth = require("../utils/auth");
 const { signToken } = require("../utils/auth");
 
-console.log("------------------------Start of resolvers");
+
 const resolvers = {
   Query: {
     // ==========================================================
@@ -15,12 +15,12 @@ const resolvers = {
       return await User.find();
     },
     // gets user by id  /:id
-    user: async ({ id }) => {
-      const newUser = User.findOne({ id: id });
+    user: async (parent, { userName }) => {
+      const newUser = User.findOne({ userName });
       if (newUser) {
         return await newUser;
       }
-      throw new AuthenticationError("User with that id not found!");
+      throw new AuthenticationError("User with that name  not found!");
     },
 
     // =============================================================

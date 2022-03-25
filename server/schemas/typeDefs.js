@@ -1,5 +1,5 @@
 const { gql } = require("apollo-server-express");
-console.log("Start of typeDefs");
+
 // TODO: We will probably change the way comments work
 const typeDefs = gql`
   type Post {
@@ -42,7 +42,7 @@ const typeDefs = gql`
   type Query {
     me: User
     users: [User]
-    user(userName: String): User
+    user(userName: String!): User
     posts(userName: String!): [Post]
     post(_id: ID!): Post
     comment(_id: ID!): Comment
@@ -89,6 +89,6 @@ const typeDefs = gql`
   }
 `;
 
-console.log("End of typedefs");
+
 
 module.exports = typeDefs;
