@@ -8,7 +8,7 @@ import { gql } from "@apollo/client";
 */
 
 export const QUERY_ALL_POSTS = gql`
-  {
+  query posts {
     posts {
       _id
       upVoted_user_ids
@@ -19,14 +19,16 @@ export const QUERY_ALL_POSTS = gql`
       tag_genre
       tag_language
       createdAt
-      comments
+      comments {
+        _id
+      }
     }
   }
 `;
 
 export const QUERY_ALL_COMMENTS = gql`
-  {
-    comments {
+  query comments($id: ID!) {
+    comments(_id: $id) {
       _id
       comment_body
       createdAt
@@ -36,8 +38,8 @@ export const QUERY_ALL_COMMENTS = gql`
 `;
 // we probably want more info on user query (comments, post info (???))
 export const QUERY_USER = gql`
-  {
-    user {
+  query user($userName: String!) {
+    user(userName: $username) {
       _id
       userName
       email
@@ -56,8 +58,8 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_POST = gql`
-  {
-    post {
+  query post($id: ID!) {
+    post(_id: $id) {
       _id
       upVoted_user_ids
       downVoted_user_ids

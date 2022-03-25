@@ -4,10 +4,11 @@ const { User, Post, Comment } = require("../models");
 const auth = require("../utils/auth");
 const { signToken } = require("../utils/auth");
 
+console.log("------------------------Start of resolvers");
 const resolvers = {
   Query: {
-      // ==========================================================
-      // User Queries
+    // ==========================================================
+    // User Queries
 
     // gets all users /
     users: async () => {
@@ -24,7 +25,7 @@ const resolvers = {
 
     // =============================================================
     // Post Queries
-    
+
     // Find all posts /
     posts: async () => {
       return await Post.find();
@@ -41,9 +42,7 @@ const resolvers = {
     // Find post by specific tag /tag/:tag_language
 
     // TODO: Not sure we want to do it this way
-    // Find post by funny or advice /funny /advice  
-    
-
+    // Find post by funny or advice /funny /advice
 
     //=============================================================
     // Comment Queries
@@ -64,8 +63,8 @@ const resolvers = {
   },
 
   Mutation: {
-      // =====================================================
-      // User Mutations
+    // =====================================================
+    // User Mutations
 
     // Create a user  /
     // username, email, password, title, github, avatar
@@ -84,11 +83,9 @@ const resolvers = {
     // Update a user /:id
     // userName, email, password, title, github, avatar
 
-
     // Delete a user /:id
     // id
 
-    
     // ==========================================================
     // Post Mutations
 
@@ -98,8 +95,7 @@ const resolvers = {
     // Update Post /:id
     // title, post_body, user_id, tag_genre, tag_language
 
-    // Delete Post /:id  
-
+    // Delete Post /:id
 
     // upvote /upvote/:id
     // downvote /downvote/:id
@@ -107,7 +103,7 @@ const resolvers = {
     // =============================================================
     // Comment Mutations
 
-    // Create Comment / 
+    // Create Comment /
     // post_id, comment_body, user_id  with auth
     // Update Comment /:id
     // post_id, comment_body, user_id from session
@@ -128,7 +124,6 @@ const resolvers = {
       return { token, user };
     },
     // Logout
-
   },
 };
 
