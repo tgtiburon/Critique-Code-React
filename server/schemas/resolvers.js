@@ -52,9 +52,25 @@ const resolvers = {
     },
     // TODO:
     // Find post by specific tag /tag/:tag_language
+    postLang: async (parent, { tag_language }) => {
+      const langPost = Post.find({ tag_language: tag_language }).exec();
+      console.log(tag_language);
+
+      if (langPost) {
+        return await langPost;
+      }
+      throw new AuthenticationError("Post with that language not found!");
+    },
 
     // TODO: Not sure we want to do it this way
     // Find post by funny or advice /funny /advice
+    postGenre: async (parent, { tag_genre }) => {
+      const genrePost = Post.find({ tag_genre });
+      if (genrePost) {
+        return await genrePost;
+      }
+      throw new AuthenticationError("Post with that genre not found!");
+    },
 
     //=============================================================
     // Comment Queries
@@ -105,17 +121,65 @@ const resolvers = {
 
     // Delete a user /:id
     // id
+    deleteUser: async (parent, { userName }) => {
+      const user = await User.findOneAndDelete({ userName });
+      // What do we want to return?
+      if (user) {
+        return await user;
+      }
+      throw new AuthenticationError("User with that id not found!");
+    },
 
     // ==========================================================
     // Post Mutations
 
     // Create Post /
     // title, post_body, user_id, tag_genre, tag_language
-
+    createPost: async (
+      parent,
+      { userName, title, post_body, tag_genre, tag_language }
+    ) => {
+      const newPost = await Post.create({
+        userName,
+        title,
+        post_body,
+        tag_genre,
+        tag_language,
+      });
+      if (newPost) {
+        return await newPost;
+      }
+      throw new AuthenticationError("Could not create post!");
+    },
     // Update Post /:id
     // title, post_body, user_id, tag_genre, tag_language
 
+    updatePost: async (
+      parent,
+      { userName, title, post_body, tag_genre, tag_language }
+    ) => {
+      const newPost = await Post.findOneAndUpdate({
+        userName,
+        title,
+        post_body,
+        tag_genre,
+        tag_language,
+      });
+      if (newPost) {
+        return await newPost;
+      }
+      throw new AuthenticationError("Could not update post!");
+    },
+
     // Delete Post /:id
+    //TODO:
+    deletePost: async (parent, { id }) => {
+      const post = await Post.findOneAndDelete({ id });
+      if (post) {
+        return await post;
+      }
+      throw new AuthenticationError("Could not delete post!");
+    },
 
     // upvote /upvote/:id
     // downvote /downvote/:id
@@ -125,6 +189,22 @@ const resolvers = {
 
     // Create Comment /
     // post_id, comment_body, user_id  with auth
+    createComment: async (
+      parent,
+      { userName,  comment_body }
+    ) => {
+      const newComment = await Comment.create({
+        userName,
+        title,
+        comment_body,
+        tag_genre,
+        tag_language,
+      });
+      if (newPost) {
+        return await newPost;
+      }
+      throw new AuthenticationError("Could not create post!");
+    },
     // Update Comment /:id
     // post_id, comment_body, user_id from session
 
