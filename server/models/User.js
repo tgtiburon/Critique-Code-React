@@ -2,64 +2,66 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-
-
 const bcrypt = require("bcrypt");
 
-const userSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
+const userSchema = new Schema(
+  {
+    userName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, "Please input a valid email address"],
-  },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, "Please input a valid email address"],
+    },
 
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-  },
+    password: {
+      type: String,
+      required: true,
+      minlength: 5,
+    },
 
-  title: {
-    type: String,
-    required: false,
-    trim: true,
-  },
+    title: {
+      type: String,
+      // required: false,
+      default: "Junior Developer",
+      trim: true,
+    },
 
-  bio: {
-    type: String,
-    required: false,
-    trim: true,
-  },
+    bio: {
+      type: String,
+      required: false,
+      default: "Please fill out a bio!",
+      trim: true,
+    },
 
-  github: {
-    type: String,
-    required: false,
-  },
+    github: {
+      type: String,
+      required: false,
+    },
 
-  avatar: {
-    type: String,
-    required: false,
-    // TODO: Maybe avatar default
+    avatar: {
+      type: String,
+      required: false,
+      default: "avatar1.png",
+    },
+    posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
-  posts: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Post"
-    }
-  ]
-},
-{
-  toJSON: {
-    virtuals: true
+  {
+    toJSON: {
+      virtuals: true,
+    },
   }
-});
+);
 
 // pre-save middleware to create password
 userSchema.pre("save", async function (next) {
@@ -77,7 +79,5 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const User = mongoose.model("User", userSchema);
-
-
 
 module.exports = User;

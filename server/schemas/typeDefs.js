@@ -43,7 +43,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(userName: String!): User
-    posts(userName: String!): [Post]
+    posts: [Post]
     post(_id: ID!): Post
     comment(_id: ID!): Comment
     comments(_id: ID!): [Comment]
@@ -54,9 +54,7 @@ const typeDefs = gql`
       userName: String!
       email: String!
       password: String!
-      title: String!
       github: String!
-      avatar: String!
     ): Auth
     updateUser(
       userName: String!
@@ -88,7 +86,5 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
   }
 `;
-
-
 
 module.exports = typeDefs;
