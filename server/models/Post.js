@@ -6,6 +6,10 @@ const { Schema } = mongoose;
 
 const postSchema = new Schema(
   {
+    userName: {
+      type:String, 
+      required: true,
+    },
     upVoted_user_ids: [
       {
         type: Schema.Types.ObjectId,
@@ -36,7 +40,8 @@ const postSchema = new Schema(
 
     vote_count: {
       type: Number,
-      required: true,
+      required: false,
+      default: 0,
     },
 
     // user_id: {

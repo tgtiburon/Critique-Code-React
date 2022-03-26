@@ -4,6 +4,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Post {
     _id: ID
+    userName: String!
     upVoted_user_ids: [User]
     downVoted_user_ids: [User]
     title: String
@@ -45,6 +46,8 @@ const typeDefs = gql`
     user(userName: String!): User
     posts: [Post]
     post(_id: ID!): Post
+    postLang(tag_language: String!): Post
+    postGenre(tag_genre: String!): Post
     comment(_id: ID!): Comment
     comments(_id: ID!): [Comment]
   }
@@ -64,14 +67,16 @@ const typeDefs = gql`
       github: String!
       avatar: String!
     ): User
-    deleteUser(userId: ID!): User
+    deleteUser(userName: String!): User
     createPost(
+      userName: String!
       title: String!
       post_body: String!
       tag_genre: String!
       tag_language: String!
     ): Post
     updatePost(
+      userName: String!
       title: String!
       post_body: String!
       tag_genre: String!
