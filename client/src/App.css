@@ -152,32 +152,6 @@ code:hover {
 }
 
 
-@media screen and (max-width: 760px) {
-    .top {
-        background-image: none;
-        align-content: center;
-        white-space: nowrap;
-    }
-
-    .h-title {
-        margin: 5px;
-        padding: 5px;
-        align-self: center;
-        white-space: nowrap;
-        font-size: 50px;
-    }
-
-    .h-span {
-        font-size: 50px;
-        margin: 5px;
-    }
-
-    .links {
-        font-size: 12px;
-        font-weight: 500;
-        padding: 5px;
-    }
-}
 
 /* .nav-section {
 
@@ -192,6 +166,7 @@ a {
     transition: all 80ms ease-in-out;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
+
 
 .funny {
     margin: 30px;
@@ -219,6 +194,44 @@ a:hover {
 .navbar form input button {
     float: left;
     padding: 15px;
+}
+
+@media screen and (max-width: 760px) {
+    .top {
+        background-image: none;
+        align-content: center;
+        white-space: nowrap;
+    }
+
+    .h-title {
+        margin: 5px;
+        padding: 5px;
+        align-self: center;
+        white-space: nowrap;
+        font-size: 50px;
+    }
+
+    .h-span {
+        font-size: 50px;
+        margin: 5px;
+    }
+
+    .links {
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px;
+    }
+
+    .sidebar-right {
+        align-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 5px;
+    }
+
+    .sidebar-right h3 {
+        display: none;
+    }
 }
 
 /* signup/login buttons */
