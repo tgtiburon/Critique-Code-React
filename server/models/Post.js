@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Comment = require("./Comment");
-//const { format_date } = require("../utils/helpers");
+const { formatDate } = require("../utils/helpers");
 
 const { Schema } = mongoose;
 
@@ -31,7 +31,7 @@ const postSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: timestamp => formatDate(timestamp),
+      get: (timestamp) => formatDate(timestamp),
     },
 
     vote_count: {

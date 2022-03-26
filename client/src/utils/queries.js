@@ -39,7 +39,7 @@ export const QUERY_ALL_COMMENTS = gql`
 // we probably want more info on user query (comments, post info (???))
 export const QUERY_USER = gql`
   query user($userName: String!) {
-    user(userName: $username) {
+    user(userName: $userName) {
       _id
       userName
       email

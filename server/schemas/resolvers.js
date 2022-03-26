@@ -4,7 +4,6 @@ const { User, Post, Comment } = require("../models");
 const auth = require("../utils/auth");
 const { signToken } = require("../utils/auth");
 
-console.log("------------------------Start of resolvers");
 const resolvers = {
   Query: {
     // ==========================================================
@@ -15,12 +14,25 @@ const resolvers = {
       return await User.find();
     },
     // gets user by id  /:id
-    user: async ({ id }) => {
-      const newUser = User.findOne({ id: id });
+    user: async (parent, { userName }) => {
+      const newUser = User.findOne({ userName });
       if (newUser) {
         return await newUser;
       }
-      throw new AuthenticationError("User with that id not found!");
+      throw new AuthenticationError("User with that name  not found!");
+    },
+
+    // Get the current user
+    me: async (parent, args, context) => {
+      // Are they authorized
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("posts");
+
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
     },
 
     // =============================================================
@@ -31,7 +43,7 @@ const resolvers = {
       return await Post.find();
     },
     // Find a specific post by id /:id
-    post: async ({ id }) => {
+    post: async (parent, { id }) => {
       const newPost = Post.findOne({ id: id });
       if (newPost) {
         return await newPost;
@@ -53,7 +65,7 @@ const resolvers = {
     },
 
     // Find a comment by id
-    comment: async ({ id }) => {
+    comment: async (parent, { id }) => {
       const newComment = Comment.findOne({ id: id });
       if (newComment) {
         return await newComment;
@@ -68,20 +80,28 @@ const resolvers = {
 
     // Create a user  /
     // username, email, password, title, github, avatar
-    addUser: async (parent, { userName, email, password, github }) => {
-      const user = await User.create({
-        userName: userName,
-        email: email,
-        password: password,
-        title: "Please add title",
-        github: github,
-        avatar: "avatar1.png",
-      });
+    addUser: async (parent, { userName, email, github, password }) => {
+      const user = await User.create({ userName, email, github, password });
       const token = signToken(user);
       return { token, user };
     },
     // Update a user /:id
     // userName, email, password, title, github, avatar
+    updateUser: async (
+      parent,
+      { userName, email, github, password, title, avatar }
+    ) => {
+      const user = await User.findOneAndUpdate({
+        userName,
+        email,
+        github,
+        password,
+        title,
+        avatar,
+      });
+      const token = signToken(user);
+      return { token, user };
+    },
 
     // Delete a user /:id
     // id
