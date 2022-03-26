@@ -50,7 +50,7 @@ const resolvers = {
       }
       throw new AuthenticationError("Post with that id not found!");
     },
-    // TODO:
+
     // Find post by specific tag /tag/:tag_language
     postLang: async (parent, { tag_language }) => {
       const langPost = Post.find({ tag_language: tag_language }).exec();
@@ -62,10 +62,9 @@ const resolvers = {
       throw new AuthenticationError("Post with that language not found!");
     },
 
-    // TODO: Not sure we want to do it this way
     // Find post by funny or advice /funny /advice
     postGenre: async (parent, { tag_genre }) => {
-      const genrePost = Post.find({ tag_genre });
+      const genrePost = Post.find({ tag_genre: tag_genre });
       if (genrePost) {
         return await genrePost;
       }
@@ -189,27 +188,40 @@ const resolvers = {
 
     // Create Comment /
     // post_id, comment_body, user_id  with auth
-    createComment: async (
-      parent,
-      { userName,  comment_body }
-    ) => {
+    createComment: async (parent, { postId, userName, comment_body }) => {
       const newComment = await Comment.create({
+        postId,
         userName,
-        title,
         comment_body,
-        tag_genre,
-        tag_language,
       });
-      if (newPost) {
-        return await newPost;
+      if (newComment) {
+        return await newComment;
       }
-      throw new AuthenticationError("Could not create post!");
+      throw new AuthenticationError("Could not create comment!");
     },
     // Update Comment /:id
     // post_id, comment_body, user_id from session
+    updateComment: async (parent, { postId, userName, comment_body }) => {
+      const updatedComment = await Comment.findOneAndUpdate({
+        postId,
+        userName,
+        comment_body,
+      });
+      if (updatedComment) {
+        return await updatedComment;
+      }
+      throw new AuthenticationError("Could not update Comment!");
+    },
 
     // delete comment /:id
     // id
+    deleteComment: async (parent, { id }) => {
+      const comment = await Comment.findOneAndDelete({ id });
+      if (comment) {
+        return await comment;
+      }
+      throw new AuthenticationError("Could not delete comment!");
+    },
 
     // Login
     login: async (parent, { email, password }) => {
