@@ -46,8 +46,8 @@ const typeDefs = gql`
     user(userName: String!): User
     posts: [Post]
     post(_id: ID!): Post
-    postLang(tag_language: String!): Post
-    postGenre(tag_genre: String!): Post
+    postLang(tag_language: String!): [Post]
+    postGenre(tag_genre: String!): [Post]
     comment(_id: ID!): Comment
     comments(_id: ID!): [Comment]
   }
@@ -85,8 +85,8 @@ const typeDefs = gql`
     deletePost(postId: ID!): Post
     upVotePost(postId: ID!): Post
     downVotePost(postId: ID!): Post
-    createComment(postId: ID!, comment_body: String!): Comment
-    updateComment(postId: ID!, comment_body: String!): Comment
+    createComment(postId: ID!, userName: String!, comment_body: String!): Comment
+    updateComment(postId: ID!, userName: String!, comment_body: String!): Comment
     deleteComment(postId: ID!): Comment
     login(email: String!, password: String!): Auth
   }
