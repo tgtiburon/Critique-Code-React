@@ -35,12 +35,8 @@ export const ADD_USER = gql`
 `;
 
 export const DELETE_USER = gql`
-  mutation deleteUser(
-    userName: $userName
-  ) {
-    deleteUser(
-      userName: $userName
-    ) {
+  mutation deleteUser($userName: String!) {
+    deleteUser(userName: $userName) {
       userName
     }
   }
@@ -55,7 +51,7 @@ export const UPDATE_USER = gql`
     $title: String!
     $avatar: String!
   ) {
-    addUser(
+    updateUser(
       userName: $userName
       email: $email
       password: $password
@@ -63,29 +59,29 @@ export const UPDATE_USER = gql`
       title: $title
       avatar: $avatar
     ) {
-      token
-      user {
-        _id
-        userName
-      }
+      _id
+      userName
     }
   }
 `;
 
 export const CREATE_POST = gql`
   mutation createPost(
+    $userName: String!
     $title: String!
     $post_body: String!
     $tag_genre: String!
     $tag_language: String!
   ) {
     createPost(
-      post_body: $post_body
+      userName: $userName
       title: $title
+      post_body: $post_body
       tag_genre: $tag_genre
       tag_language: $tag_language
     ) {
       _id
+      userName
       title
       post_body
       tag_genre
@@ -97,16 +93,40 @@ export const CREATE_POST = gql`
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($comment_body: String!, $postId: ID!) {
-    addComment(comment_body: $comment_body, postId: $postId) {
+export const CREATE_COMMENT = gql`
+  mutation createComment(
+    $postId: ID!
+    $userName: String!
+    $comment_body: String!
+  ) {
+    createComment(
+      postId: $postId
+      userName: $userName
+      comment_body: $comment_body
+    ) {
       _id
-      comments {
-        _id
-        comment_body
-        userName
-        createdAt
-      }
+      userName
+      comment_body
+      createdAt
+    }
+  }
+`;
+
+export const UPDATE_COMMENT = gql`
+  mutation updateComment(
+    $postId: ID!
+    $userName: String!
+    $comment_body: String!
+  ) {
+    updateComment(
+      postId: $postId
+      userName: $userName
+      comment_body: $comment_body
+    ) {
+      _id
+      userName
+      comment_body
+      createdAt
     }
   }
 `;
