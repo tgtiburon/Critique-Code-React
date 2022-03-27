@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER,
+         LOGIN_USER
+ } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
@@ -26,40 +28,79 @@ const OVERLAY_STYLES = {
 }
 
 function Login ({open, onClose}) {
-
-  const [formState, setFormState] = useState({
+  // sign up form
+  const [signUpState, setSignUpState] = useState({
     email: '',
     userName: '',
     github: '',
     password: '',
   });
 
-  const [addUser, { error }] = useMutation(ADD_USER);
-
-  const handleChange = (event) => {
-    event.preventDefault();
-
+  // handle signup form changes based on input
+  const handleSignUpChange = (event) => {
     const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
+    setSignUpState({
+      ...signUpState,
       [name]: value,
     });
-  }
+  };
 
-  const handleFormSubmit = async (event) => {
+  // submit sign up form
+  const handleFormSubmitNewUser = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addUser({
-        variables: { ...formState },
+      const mutationResponse = await addUser({
+        variables: { ...signUpState },
       });
-      
-      Auth.login(data.addUser.token)
+
+      Auth.login(mutationResponse.addUser.token);
     } catch (e) {
       console.error(e);
     }
   };
+
+  // login form
+  const [addUser, { error }] = useMutation(ADD_USER);
+
+  const [logInState, setLogInState] = useState({
+    username: '',
+    password: ''
+  });
+
+  const [login, { loginError }] = useMutation(LOGIN_USER);
+
+  // handle login form changes based on input
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+
+    setLogInState({
+      ...logInState,
+      [name]: value,
+    });
+  };
+
+  // submit login form
+const handleFormSubmitLogin = async (event) => {
+  event.preventDefault();
+
+  try {
+    const { data } = await login({
+      variables: { ...logInState },
+    });
+
+    Auth.login(data.login.token);
+  } catch (e) {
+    console.error(e);
+  }
+
+  // clear form values
+  setLogInState({
+    username: '',
+    password: '',
+  });
+};
 
   if (!open) return null
 
@@ -69,7 +110,7 @@ function Login ({open, onClose}) {
       <div id="signup-modal" className="modal">
         <div className="modal-content container right-panel-active">
           <div className="container_form container_signup">
-                <form className="form" id="form1" onSubmit={handleFormSubmit}>
+                <form className="form" id="form1" onSubmit={handleFormSubmitNewUser}>
                   <h2 className="form_title">Join in on the fun!</h2>
                   <input 
                     type="text" 
@@ -77,8 +118,8 @@ function Login ({open, onClose}) {
                     placeholder="Email" 
                     id="email-signup" 
                     autoComplete="off"
-                    value={formState.email}
-                    onChange={handleChange} 
+                    value={signUpState.email}
+                    onChange={handleSignUpChange} 
                   />
                   <input 
                     type="text" 
@@ -86,8 +127,8 @@ function Login ({open, onClose}) {
                     placeholder="Username" 
                     id="username-signup" 
                     autoComplete="off" 
-                    value={formState.userName}
-                    onChange={handleChange} 
+                    value={signUpState.userName}
+                    onChange={handleSignUpChange} 
                   />
                   <input 
                     type="text" 
@@ -95,17 +136,17 @@ function Login ({open, onClose}) {
                     placeholder="Github" 
                     id="github-signup" 
                     autoComplete="off" 
-                    value={formState.github}
-                    onChange={handleChange} 
+                    value={signUpState.github}
+                    onChange={handleSignUpChange} 
                   />
                   <input 
-                    type="text" 
+                    type="password" 
                     className="input" 
                     placeholder="Password" 
                     id="password-signup" 
                     autoComplete="off" 
-                    value={formState.password}
-                    onChange={handleChange} 
+                    value={signUpState.password}
+                    onChange={handleSignUpChange} 
                   />
                     <button type="submit" className="auth-button" id="unique-btn">Sign Up</button>
                 </form>
@@ -113,22 +154,27 @@ function Login ({open, onClose}) {
             </div>
 
             <div className="container_form container_signin">
-              <form className="form" id="form2">
+              <form className="form" id="form2" onSubmit={handleFormSubmitLogin}>
                 <h2 className="form_title">Welcome Back!</h2>
                 <input 
                   type="text" 
                   className="input" 
                   placeholder="username" 
                   id="username-login" 
+                  value={logInState.username}
+                  onChange={handleLoginChange}
                 />
                 <input 
                   type="password" 
                   className="input" 
                   placeholder="password" 
                   id="password-login"
+                  value={logInState.password}
+                  onChange={handleLoginChange}
                 />
                 <button type="submit" className="auth-button" id="log-btn">Log In</button>
               </form>
+              {loginError && <div>Login failed</div>}
             </div>
 
             {/* <div className="container_overlay">
