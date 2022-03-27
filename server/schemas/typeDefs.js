@@ -88,7 +88,7 @@ const typeDefs = gql`
     createComment(postId: ID!, userName: String!, comment_body: String!): Comment
     updateComment(postId: ID!, userName: String!, comment_body: String!): Comment
     deleteComment(postId: ID!): Comment
-    login(email: String!, password: String!): Auth
+    login(userName: String!, password: String!): Auth
   }
 `;
 

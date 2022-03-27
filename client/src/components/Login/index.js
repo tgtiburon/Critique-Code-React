@@ -65,7 +65,7 @@ function Login ({open, onClose}) {
   const [addUser, { error }] = useMutation(ADD_USER);
 
   const [logInState, setLogInState] = useState({
-    username: '',
+    userName: '',
     password: ''
   });
 
@@ -97,7 +97,7 @@ const handleFormSubmitLogin = async (event) => {
 
   // clear form values
   setLogInState({
-    username: '',
+    userName: '',
     password: '',
   });
 };
@@ -125,7 +125,7 @@ const handleFormSubmitLogin = async (event) => {
                   <input 
                     type="text" 
                     className="input" 
-                    name="username"
+                    name="userName"
                     placeholder="Username" 
                     id="username-signup" 
                     autoComplete="off" 
@@ -163,10 +163,10 @@ const handleFormSubmitLogin = async (event) => {
                 <input 
                   type="text" 
                   className="input" 
-                  name="username"
+                  name="userName"
                   placeholder="username" 
                   id="username-login" 
-                  value={logInState.username}
+                  value={logInState.userName}
                   onChange={handleLoginChange}
                 />
                 <input 

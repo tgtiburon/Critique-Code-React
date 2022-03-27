@@ -224,10 +224,10 @@ const resolvers = {
     },
 
     // Login
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (parent, { userName, password }) => {
+      const user = await User.findOne({ userName });
       if (!user) throw new AuthenticationError("Incorrect credentials");
-      const userPassword = await player.isCorrectPassword(password);
+      const userPassword = await user.isCorrectPassword(password);
 
       if (!userPassword) throw new AuthenticationError("Incorrect credentials");
 
