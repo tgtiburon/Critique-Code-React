@@ -12,7 +12,7 @@ function Timeline() {
 
     const { loading, data } = useQuery(QUERY_ALL_POSTS);
 
-    console.log(data);
+    // console.log(data);
     // useEffect(() => {
     //     if (data) {
     //         dispatch({
