@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import Login from '../Login';
 
+import Auth from '../../utils/auth';
+
 function Header () {
   const [isOpen, setIsOpen] = useState(false);
+
+  const loggedIn = Auth.loggedIn();
   
   return (
     <section className="top">
       <div className="blur-head">
         <div className="auth-btn-container">
-          {/* Change this to render only if logged in */}
-          <button id="logout-btn" className="auth-btns">Log Out</button>
+          {loggedIn && (
+            <button id="logout-btn" className="auth-btns">Log Out</button>
+          )}
           <button onClick={() => setIsOpen(true)} id="login-btn" className="auth-btns">Log In/ <span>Sign Up</span></button>
           <Login 
           open={isOpen} 
@@ -28,8 +33,9 @@ function Header () {
             <nav className="links">
               <a className="funny" href="/funny">Intentionally Bad</a>
               <a className="advice" href="/advice">Accidentally Bad</a>
-              {/* Change this to render only if logged in */}
-              <a className="profile" href="/profile">Profile</a>
+              {loggedIn && (
+                <a className="profile" href="/profile">Profile</a>
+              )}
             </nav>
           </div>
           <div className="search-bar">
