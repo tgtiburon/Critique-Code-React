@@ -74,7 +74,7 @@ function Login ({open, onClose}) {
   // handle login form changes based on input
   const handleLoginChange = (event) => {
     const { name, value } = event.target;
-
+  
     setLogInState({
       ...logInState,
       [name]: value,
@@ -114,7 +114,8 @@ const handleFormSubmitLogin = async (event) => {
                   <h2 className="form_title">Join in on the fun!</h2>
                   <input 
                     type="text" 
-                    className="input" 
+                    className="input"
+                    name="email" 
                     placeholder="Email" 
                     id="email-signup" 
                     autoComplete="off"
@@ -124,6 +125,7 @@ const handleFormSubmitLogin = async (event) => {
                   <input 
                     type="text" 
                     className="input" 
+                    name="username"
                     placeholder="Username" 
                     id="username-signup" 
                     autoComplete="off" 
@@ -133,6 +135,7 @@ const handleFormSubmitLogin = async (event) => {
                   <input 
                     type="text" 
                     className="input" 
+                    name="github"
                     placeholder="Github" 
                     id="github-signup" 
                     autoComplete="off" 
@@ -142,6 +145,7 @@ const handleFormSubmitLogin = async (event) => {
                   <input 
                     type="password" 
                     className="input" 
+                    name="password"
                     placeholder="Password" 
                     id="password-signup" 
                     autoComplete="off" 
@@ -159,6 +163,7 @@ const handleFormSubmitLogin = async (event) => {
                 <input 
                   type="text" 
                   className="input" 
+                  name="username"
                   placeholder="username" 
                   id="username-login" 
                   value={logInState.username}
@@ -167,6 +172,7 @@ const handleFormSubmitLogin = async (event) => {
                 <input 
                   type="password" 
                   className="input" 
+                  name="password"
                   placeholder="password" 
                   id="password-login"
                   value={logInState.password}
@@ -176,18 +182,6 @@ const handleFormSubmitLogin = async (event) => {
               </form>
               {loginError && <div>Login failed</div>}
             </div>
-
-            {/* <div className="container_overlay">
-              <div className="overlay">
-                <span className="close">x</span>
-                <div className="overlay_panel overlay_left">
-                  <button className="auth-button" id="login">Log In</button>
-                </div>
-                <div className="overlay_panel overlay_right">
-                  <button className="auth-button" id="signUp">Sign Up</button>
-                </div>
-              </div>
-            </div> */}
             
         </div>
 
