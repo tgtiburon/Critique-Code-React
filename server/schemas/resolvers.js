@@ -134,25 +134,34 @@ const resolvers = {
 
     // Create Post /
     // title, post_body, user_id, tag_genre, tag_language
+    // TODO: remove username from create post
     createPost: async (
       parent,
-      { userName, title, post_body, tag_genre, tag_language }
+      { userName, title, post_body, tag_genre, tag_language },
+      context
     ) => {
-      const newPost = await Post.create({
-        userName,
-        title,
-        post_body,
-        tag_genre,
-        tag_language,
-      });
-      if (newPost) {
-        return await newPost;
+      if (context.user) {
+        const newPost = await Post.create({
+          userName: context.user.userName,
+          title,
+          post_body,
+          tag_genre,
+          tag_language,
+        });
+
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { posts: post._id } },
+          { new: true }
+        );
+        return newPost;
       }
-      throw new AuthenticationError("Could not create post!");
+
+      throw new AuthenticationError("You need to be logged in!");
     },
     // Update Post /:id
     // title, post_body, user_id, tag_genre, tag_language
-
+    //TODO: Might have to change
     updatePost: async (
       parent,
       { userName, title, post_body, tag_genre, tag_language }
@@ -188,19 +197,30 @@ const resolvers = {
 
     // Create Comment /
     // post_id, comment_body, user_id  with auth
-    createComment: async (parent, { postId, userName, comment_body }) => {
-      const newComment = await Comment.create({
-        postId,
-        userName,
-        comment_body,
-      });
-      if (newComment) {
-        return await newComment;
+    createComment: async (
+      parent,
+      { postId, userName, comment_body },
+      context
+    ) => {
+      if (context.user) {
+        const newComment = await Comment.create({
+          postId,
+          userName: context.user.username,
+          comment_body,
+        });
+
+        await Post.findByIdAndUpdate(
+          { _id: postId },
+          { $push: { comments: newComment._id } },
+          { new: true }
+        );
+        return newComment;
       }
-      throw new AuthenticationError("Could not create comment!");
+      throw new AuthenticationError("You need to be logged in!");
     },
     // Update Comment /:id
     // post_id, comment_body, user_id from session
+    //TODO: Might need to update too
     updateComment: async (parent, { postId, userName, comment_body }) => {
       const updatedComment = await Comment.findOneAndUpdate({
         postId,
