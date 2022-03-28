@@ -6,10 +6,12 @@ const { Provider } = AppContext;
 
 const AppProvider = ({ value: [], ...props}) => {
     const [state, dispatch] = useAppReducer({
+        reducedTimeline: [],
         activeTimeline: [],
         upVotedPosts: [],
         downVotedPosts: [],
         userData: [],
+        activeFilter: ''
     });
     return <Provider value={[state, dispatch]} {...props} />;
 };
