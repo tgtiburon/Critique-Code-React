@@ -2,7 +2,9 @@
 import  {
     UPVOTED_POSTS,
     DOWNVOTED_POSTS,
-    UPDATE_TIMELINE
+    UPDATE_TIMELINE,
+    SET_FILTER,
+    REDUCE_TIMELINE
 } from './actions';
 
 import { useReducer } from 'react';
@@ -14,6 +16,16 @@ export const reducer = (state, action) => {
                 ...state,
                 activeTimeline: [...action.posts]
             };
+        case REDUCE_TIMELINE:
+            return {
+                ...state,
+                reducedTimeline: [...action.posts]
+            };
+        case SET_FILTER:
+            return {
+                ...state,
+                activeFilter: action
+            }
         default:
             return state
     }
