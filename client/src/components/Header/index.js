@@ -12,21 +12,19 @@ function Header () {
     <section className="top">
       <div className="blur-head">
         <div className="auth-btn-container">
-          {loggedIn && (
+        {loggedIn && (
             <button id="logout-btn" className="auth-btns">Log Out</button>
           )}
+        {!loggedIn && (
+          <>
           <button onClick={() => setIsOpen(true)} id="login-btn" className="auth-btns">Log In/ <span>Sign Up</span></button>
           <Login 
           open={isOpen} 
           onClose={() => setIsOpen(false)}
            />
+          </>
+        )}
         </div>
-
-        <header className="h-title-container">
-          <a href="/">
-            <h1  className="h-title">Critique <span className="h-span" id="h-span">&lt;Code&gt;</span></h1>
-          </a>
-        </header>
 
         <div className="nav-section">
           <div className="nav-bar">
