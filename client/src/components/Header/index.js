@@ -31,6 +31,12 @@ function Header () {
         )}
         </div>
 
+        <header className="h-title-container">
+          <a href="/">
+            <h1  className="h-title">Critique <span className="h-span" id="h-span">&lt;Code&gt;</span></h1>
+          </a>
+        </header>
+
         <div className="nav-section">
           <div className="nav-bar">
             <nav className="links">
