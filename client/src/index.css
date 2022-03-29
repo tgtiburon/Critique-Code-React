@@ -660,11 +660,12 @@
           margin: auto;
       }
       .sidebar-right {
-          width: 90%;
-          display: flex;
-          justify-content: center;
-          /* padding-left: 100px; */
-          position: relative;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      .sidebar-right h3 {
+          display: none;
       }
       .sidebar-left {
           width: 90%;
@@ -677,6 +678,12 @@
           padding-left: 15%;
           padding-top: 10%;
       }
+
+      .h-title {
+        white-space: nowrap;
+        font-size: 15px;
+      }
+
       .auth-btn-container {
           display: grid;
           margin: auto;
@@ -685,7 +692,7 @@
           font-size: 18px;
       }
       .search-bar {
-          display: grid;
+          display: block;
           /* margin: auto; */
           width: 80%;
           /* padding: 30px; */
