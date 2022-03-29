@@ -7,13 +7,18 @@ function Header () {
   const [isOpen, setIsOpen] = useState(false);
 
   const loggedIn = Auth.loggedIn();
+
+  const logout = event => {
+    event.preventDefault();
+    Auth.logout();
+  }
   
   return (
     <section className="top">
       <div className="blur-head">
         <div className="auth-btn-container">
         {loggedIn && (
-            <button id="logout-btn" className="auth-btns">Log Out</button>
+            <button id="logout-btn" className="auth-btns" onClick={logout}>Log Out</button>
           )}
         {!loggedIn && (
           <>
