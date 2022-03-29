@@ -4,7 +4,8 @@ import  {
     DOWNVOTED_POSTS,
     UPDATE_TIMELINE,
     SET_FILTER,
-    REDUCE_TIMELINE
+    REDUCE_TIMELINE,
+    UPDATE_USER
 } from './actions';
 
 import { useReducer } from 'react';
@@ -25,7 +26,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 activeFilter: action
-            }
+            };
+        case UPDATE_USER:
+            return {
+                ...state,
+                userData: action.userData
+            };
         default:
             return state
     }

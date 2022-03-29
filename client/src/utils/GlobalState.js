@@ -10,7 +10,7 @@ const AppProvider = ({ value = [], ...props}) => {
         activeTimeline: [],
         upVotedPosts: [],
         downVotedPosts: [],
-        userData: [],
+        userData: {},
         activeFilter: ''
     });
     return <Provider value={[state, dispatch]} {...props} />;
