@@ -76,6 +76,7 @@ export const QUERY_USER = gql`
 export const QUERY_POST = gql`
   query posts {
     posts {
+      userName
       upVoted_user_ids {
         _id
       }
@@ -107,6 +108,7 @@ export const QUERY_POST_LANG = gql`
       downVoted_user_ids {
         userName
       }
+      userName
       title
       post_body
       vote_count
@@ -132,6 +134,7 @@ export const QUERY_POST_GENRE = gql`
       downVoted_user_ids {
         userName
       }
+      userName
       title
       post_body
       vote_count
