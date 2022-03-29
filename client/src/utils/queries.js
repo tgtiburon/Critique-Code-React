@@ -76,10 +76,10 @@ export const QUERY_POST = gql`
   query posts {
     posts {
       upVoted_user_ids {
-        userName
+        _id
       }
       downVoted_user_ids {
-        userName
+        _id
       }
       title
       post_body
