@@ -11,8 +11,12 @@ export const QUERY_ALL_POSTS = gql`
   query posts {
     posts {
       _id
-      upVoted_user_ids
-      downVoted_user_ids
+      upVoted_user_ids {
+        _id
+      }
+      downVoted_user_ids {
+        _id
+      }
       title
       post_body
       vote_count
