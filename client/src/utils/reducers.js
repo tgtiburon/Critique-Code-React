@@ -14,12 +14,12 @@ export const reducer = (state, action) => {
         case UPDATE_TIMELINE:
             return {
                 ...state,
-                activeTimeline: [...action.posts]
+                activeTimeline: [...action.activeTimeline]
             };
         case REDUCE_TIMELINE:
             return {
                 ...state,
-                reducedTimeline: [...action.posts]
+                reducedTimeline: [...action.activeTimeline]
             };
         case SET_FILTER:
             return {
