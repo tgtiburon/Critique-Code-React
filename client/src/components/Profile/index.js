@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../../utils/queries';
+import { useAppContext } from '../../utils/GlobalState';
 
 function Profile() {
+    // const [state, dispatch] = useAppContext();
+
+    const { loading, data } = useQuery(QUERY_USER);
+
+    console.log(data);
+
     return (
     <section className="side-info">
         <section className="sidebar-right">

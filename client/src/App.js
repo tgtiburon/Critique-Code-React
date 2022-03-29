@@ -5,7 +5,7 @@ import { setContext } from '@apollo/client/link/context';
 import './App.css';
 
 import Home from './pages/Home';
-import Profile from './components/Profile';
+import ProfilePage from './pages/ProfilePage';
 import { AppProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
@@ -35,7 +35,7 @@ function App() {
         <AppProvider>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/Profile" component={Profile} />
+            <Route exact path="/Profile" component={ProfilePage} />
             <Route component={Home} />
           </Switch>
         </AppProvider>
