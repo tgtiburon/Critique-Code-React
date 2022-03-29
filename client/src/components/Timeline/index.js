@@ -29,11 +29,11 @@ function Timeline() {
                     <i type="upvote" className="fas fa-angle-up"></i>
                 </div>
                 <div className="title">
-                    <a href="single-post" target="blank">Post Link</a>
-                    <span>Posted By: <a href="/profile">Username</a> </span>
+                    <a href="single-post" target="blank">{post.title}</a>
+                    <span>Posted By: <a href="/profile">{post.userName}</a></span>
                     <span> Created {post.createdAt} ago </span>
-                    <span className="tags"><a href="tag_language">Tag Language</a>
-                    <a href="/tag_genre"></a></span>
+                    <span className="tags"><a href="tag_language">{post.tag_language}</a>
+                    <a href="/tag_genre">{post.tag_genre}</a></span>
                 </div>
                 <div className="body">
                     <pre>
@@ -43,9 +43,9 @@ function Timeline() {
                     </pre>
                 </div>
                 <div className="info">
-                    <a href="/post/{{id}}">Post LINK</a>
+                    <a href="/post/{{id}}">{post.comments.length} comments</a>
                     <span className="hidden">id</span>
-                    <span className="vote-val" id="vote-val{{id}}">vote_count</span>
+                    <span className="vote-val" id="vote-val{{id}}">{post.upVoted_user_ids.length}</span>
                     <span className="vote-val"> votes</span>
                 </div>
                 <div type="button" className="down-vote-icon">

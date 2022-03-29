@@ -17,6 +17,7 @@ export const QUERY_ALL_POSTS = gql`
       downVoted_user_ids {
         _id
       }
+      userName
       title
       post_body
       vote_count
