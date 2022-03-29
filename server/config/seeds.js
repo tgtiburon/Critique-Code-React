@@ -359,7 +359,8 @@ db.once("open", async () => {
 
   const posts = await Post.insertMany([
     {
-      id: 1,
+      // id: 1,
+      userName: "TestName1",
       upVoted_user_ids: [users[1]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -374,13 +375,14 @@ db.once("open", async () => {
       console.log(customer);
       --> { id: 1, name: 'jeff' }`,
       vote_count: 2,
-      user_id: 1,
+      //  user_id: 1,
       tag_genre: "Advice",
       tag_language: "Javascript",
       comments: [],
     },
     {
-      id: 2,
+      // id: 2,
+      userName: "TestName2",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[1]._id],
       title:
@@ -389,13 +391,14 @@ db.once("open", async () => {
       String a = String.valueOf(2);   //integer to numeric string
       int i = Integer.parseInt(a); //numeric string to an int`,
       vote_count: 2,
-      user_id: 2,
+      // user_id: 2,
       tag_genre: "Funny",
       tag_language: "Java",
       comments: [],
     },
     {
-      id: 3,
+      //id: 3,
+      userName: "TestName3",
       upVoted_user_ids: [users[5]._id],
       downVoted_user_ids: [users[1]._id],
       title:
@@ -413,13 +416,14 @@ db.once("open", async () => {
       }
       `,
       vote_count: 2,
-      user_id: 3,
+      // user_id: 3,
       tag_genre: "Advice",
       tag_language: "CSS",
       comments: [],
     },
     {
-      id: 4,
+      //id: 4,
+      userName: "TestName4",
       upVoted_user_ids: [users[1]._id],
       downVoted_user_ids: [users[2]._id],
       title: "Literally an arrow. Not even an => just ->",
@@ -431,13 +435,14 @@ db.once("open", async () => {
       }
       `,
       vote_count: 2,
-      user_id: 4,
+      // user_id: 4,
       tag_genre: "Funny",
       tag_language: "Java",
       comments: [],
     },
     {
-      id: 5,
+      //id: 5,
+      userName: "TestName5",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[4]._id],
       title:
@@ -454,13 +459,14 @@ db.once("open", async () => {
       }
       `,
       vote_count: 2,
-      user_id: 5,
+      // user_id: 5,
       tag_genre: "Advice",
       tag_language: "C#",
       comments: [],
     },
     {
-      id: 6,
+      //id: 6,
+      userName: "TestName6",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[4]._id],
       title: "C++ pls...",
@@ -483,13 +489,14 @@ db.once("open", async () => {
       }
       `,
       vote_count: 2,
-      user_id: 6,
+      // user_id: 6,
       tag_genre: "Funny",
       tag_language: "C++",
       comments: [],
     },
     {
-      id: 7,
+      //id: 7,
+      userName: "TestName7/",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -500,13 +507,14 @@ db.once("open", async () => {
         echo $row['name'] . '<br>';
       }`,
       vote_count: 2,
-      user_id: 7,
+      // user_id: 7,
       tag_genre: "Advice",
       tag_language: "PHP",
       comments: [],
     },
     {
-      id: 8,
+      //id: 8,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[6]._id],
       title:
@@ -521,13 +529,14 @@ db.once("open", async () => {
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
       vote_count: 2,
-      user_id: 1,
+      //  user_id: 1,
       tag_genre: "Funny",
       tag_language: "Python",
       comments: [],
     },
     {
-      id: 9,
+      //id: 9,
+      userName: "TestName1",
       upVoted_user_ids: [users[0]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -542,25 +551,27 @@ db.once("open", async () => {
       console.log(customer);
       --> { id: 1, name: 'jeff' }`,
       vote_count: 2,
-      user_id: 2,
+      // user_id: 2,
       tag_genre: "Advice",
       tag_language: "Javascript",
       comments: [],
     },
     {
-      id: 10,
+      //id: 10,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[6]._id],
       title: "Commas... :^)",
       post_body: `<input type="file" name="my_image" accept="image/gif,image/jpeg,image/jpg,image/png">`,
       vote_count: 2,
-      user_id: 3,
+      // user_id: 3,
       tag_genre: "Funny",
       tag_language: "HTML",
       comments: [],
     },
     {
-      id: 11,
+      //id: 11,
+      userName: "TestName1",
       upVoted_user_ids: [users[5]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -577,25 +588,27 @@ db.once("open", async () => {
           transition: all 0.3s ease;
       }`,
       vote_count: 2,
-      user_id: 4,
+      //  user_id: 4,
       tag_genre: "Advice",
       tag_language: "CSS",
       comments: [],
     },
     {
-      id: 12,
+      // id: 12,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[6]._id],
       title: "Funny date formating in Java.",
       post_body: `java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);`,
       vote_count: 2,
-      user_id: 5,
+      //  user_id: 5,
       tag_genre: "Funny",
       tag_language: "Java",
       comments: [],
     },
     {
-      id: 13,
+      //id: 13,
+      userName: "TestName1",
       upVoted_user_ids: [users[0]._id],
       downVoted_user_ids: [users[6]._id],
       title:
@@ -611,13 +624,14 @@ db.once("open", async () => {
           throw new NotImplementedException();
       }`,
       vote_count: 2,
-      user_id: 6,
+      // user_id: 6,
       tag_genre: "Advice",
       tag_language: "C#",
       comments: [],
     },
     {
-      id: 14,
+      //id: 14,
+      userName: "TestName1",
       upVoted_user_ids: [users[5]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -640,13 +654,14 @@ db.once("open", async () => {
         return 0;
       }`,
       vote_count: 2,
-      user_id: 7,
+      //  user_id: 7,
       tag_genre: "Funny",
       tag_language: "C++",
       comments: [],
     },
     {
-      id: 15,
+      // id: 15,
+      userName: "TestName1",
       upVoted_user_ids: [users[0]._id],
       downVoted_user_ids: [users[6]._id],
       title:
@@ -657,13 +672,14 @@ db.once("open", async () => {
         echo $row['name'] . '<br>';
       }`,
       vote_count: 2,
-      user_id: 6,
+      // user_id: 6,
       tag_genre: "Advice",
       tag_language: "PHP",
       comments: [],
     },
     {
-      id: 16,
+      //id: 16,
+      userName: "TestName1",
       upVoted_user_ids: [users[1]._id],
       downVoted_user_ids: [users[2]._id],
       title:
@@ -678,13 +694,14 @@ db.once("open", async () => {
       arr = list(map(int,input().split()))
       print("Input List:",arr)`,
       vote_count: 2,
-      user_id: 5,
+      //user_id: 5,
       tag_genre: "Funny",
       tag_language: "Python",
       comments: [],
     },
     {
-      id: 17,
+      // id: 17,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[4]._id],
       title: "Would the keys hewre be the name before the semicolon?",
@@ -695,25 +712,27 @@ db.once("open", async () => {
         console.log(key, value);
       });`,
       vote_count: 2,
-      user_id: 4,
+      // user_id: 4,
       tag_genre: "Advice",
       tag_language: "Javascript",
       comments: [],
     },
     {
-      id: 18,
+      //id: 18,
+      userName: "TestName1",
       upVoted_user_ids: [users[1]._id],
       downVoted_user_ids: [users[4]._id],
       title: "What is this weird string in pattern??? lol",
       post_body: `<input type="text" title="email_address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" />`,
       vote_count: 2,
-      user_id: 3,
+      // user_id: 3,
       tag_genre: "Funny",
       tag_language: "HTML",
       comments: [],
     },
     {
-      id: 19,
+      // id: 19,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[6]._id],
       title:
@@ -729,13 +748,14 @@ db.once("open", async () => {
         color: white;
       }`,
       vote_count: 2,
-      user_id: 2,
+      // user_id: 2,
       tag_genre: "Advice",
       tag_language: "CSS",
       comments: [],
     },
     {
-      id: 20,
+      // id: 20,
+      userName: "TestName1",
       upVoted_user_ids: [users[5]._id],
       downVoted_user_ids: [users[4]._id],
       title:
@@ -745,13 +765,14 @@ db.once("open", async () => {
       Date date = format.parse( myString );
       `,
       vote_count: 2,
-      user_id: 1,
+      // user_id: 1,
       tag_genre: "Funny",
       tag_language: "Java",
       comments: [],
     },
     {
-      id: 21,
+      // id: 21,
+      userName: "TestName1",
       upVoted_user_ids: [users[3]._id],
       downVoted_user_ids: [users[4]._id],
       title:
@@ -769,7 +790,8 @@ db.once("open", async () => {
       comments: [],
     },
     {
-      id: 22,
+      // id: 22,
+      userName: "TestName1",
       upVoted_user_ids: [users[5]._id],
       downVoted_user_ids: [users[2]._id],
       title: "Funny >> << lol",
@@ -797,7 +819,7 @@ db.once("open", async () => {
       }
       `,
       vote_count: 2,
-      user_id: 3,
+      // user_id: 3,
       tag_genre: "Funny",
       tag_language: "C++",
       comments: [],
