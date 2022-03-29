@@ -4,6 +4,9 @@ import { QUERY_ALL_POSTS, QUERY_POST } from '../../utils/queries';
 import { useAppContext } from '../../utils/GlobalState';
 import { UPDATE_TIMELINE } from '../../utils/actions';
 
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs/';
+
 function Timeline() {
     const [state, dispatch] = useAppContext();
     // change posts shown in timeline with global state
@@ -38,7 +41,9 @@ function Timeline() {
                 <div className="body">
                     <pre>
                         <code>
-                            {post.post_body}
+                            <SyntaxHighlighter language={post.tag_language} style={atomOneDark}>
+                                {post.post_body}
+                            </SyntaxHighlighter>
                         </code>
                     </pre>
                 </div>
