@@ -149,3 +149,23 @@ export const QUERY_POST_GENRE = gql`
     }
   }
 `;
+
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      userName
+      email
+      title
+      bio
+      github
+      avatar
+      password
+      posts {
+        _id
+        title
+        createdAt
+      }
+    }
+  }
+`;
