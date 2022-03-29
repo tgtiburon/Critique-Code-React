@@ -4,7 +4,7 @@ import { useAppReducer } from './reducers';
 const AppContext = createContext();
 const { Provider } = AppContext;
 
-const AppProvider = ({ value: [], ...props}) => {
+const AppProvider = ({ value = [], ...props}) => {
     const [state, dispatch] = useAppReducer({
         reducedTimeline: [],
         activeTimeline: [],

@@ -6,6 +6,7 @@ import './App.css';
 
 import Home from './pages/Home';
 import Profile from './components/Profile';
+import { AppProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -31,15 +32,13 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-
-
-
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/Profile" component={Profile} />
-
-          <Route component={Home} />
-        </Switch>
+        <AppProvider>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/Profile" component={Profile} />
+            <Route component={Home} />
+          </Switch>
+        </AppProvider>
       </Router>
     </ApolloProvider>
   );
