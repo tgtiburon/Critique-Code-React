@@ -16,6 +16,10 @@ function Timeline(post) {
         userName,
         title
     } = post;
+
+    const selectedPost = async (e) => {
+        e.preventDefault();
+    }
     return (
         <section className="endless-scroll">
             <section key={_id} className="post-body">
@@ -23,7 +27,7 @@ function Timeline(post) {
                     <i type="upvote" className="fas fa-angle-up"></i>
                 </div>
                 <div className="title">
-                    <a href="single-post" target="blank">{title}</a>
+                    <a href={`/post/:${_id}`} target="blank">{title}</a>
                     <span>Posted By: <a href="/profile">{userName}</a></span>
                     <span> Created {createdAt} ago </span>
                     <span className="tags"><a href="tag_language">{language}</a>
@@ -39,7 +43,7 @@ function Timeline(post) {
                     </pre>
                 </div>
                 <div className="info">
-                    <a href="/post/{{id}}">{commentsLength} comments</a>
+                    <a href={`/post/:${_id}`}>{commentsLength} comments</a>
                     <span className="hidden">id</span>
                     <span className="vote-val" id="vote-val{{id}}">{upvotesAmt}</span>
                     <span className="vote-val"> votes</span>

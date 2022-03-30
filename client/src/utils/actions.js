@@ -4,3 +4,4 @@ export const UPDATE_TIMELINE = 'UPDATE_TIMELINE';
 export const REDUCE_TIMELINE = 'REDUCE_TIMELINE';
 export const SET_FILTER = 'SET_FILTER';
 export const UPDATE_USER = 'UPDATE_USER';
+export const SET_POST = 'SET_POST';

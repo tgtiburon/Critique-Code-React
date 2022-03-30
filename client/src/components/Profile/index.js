@@ -40,7 +40,7 @@ function Profile() {
                         <div>
                             <h4 id="title-user">{title}</h4>
                         </div>
-                <img className="profile-icon" alt='profile image' src={`/images/${avatar}`}></img>
+                <img className="profile-icon" alt='profile' src={`/images/${avatar}`}></img>
                 </div>
                 <div className="about-section">
                     <p id="github-id">{github}</p>
