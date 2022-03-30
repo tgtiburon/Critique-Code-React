@@ -1,27 +1,34 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { QUERY_POST } from '../../utils/queries';
-import { useAppContext } from '../../utils/GlobalState';
+import { QUERY_POST } from '../utils/queries';
+import { useAppContext } from '../utils/GlobalState';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 function SinglePost() {
-    const { id: postId } = useParams();
+    const { id: _id } = useParams();
 
     // const [state, dispatch] = useAppContext();
 
     const { loading, data } = useQuery(QUERY_POST, {
-        variables: { id: postId }
+        variables: { id: _id }
     });
 
     const post = data?.post || {};
 
-    if(loading) {
+    console.log(post);
+
+    if(loading) {  
         return <div>Working on it...</div>
     }
 
     return (
+        <>
+        <Header />
         <section className='endless-scroll'>
             <section key={post._id} className="post-body">
                 <div type="button" className="up-vote-icon">
@@ -43,7 +50,7 @@ function SinglePost() {
                         </code>
                     </pre>
                 </div>
-                <div className="info">
+                {/* <div className="info">
                     <a href="/post/{{id}}">{post.comments.length} comments</a>
                     <span className="hidden">id</span>
                     <span className="vote-val" id="vote-val{{id}}">{post.upVoted_user_ids.length}</span>
@@ -51,9 +58,11 @@ function SinglePost() {
                 </div>
                 <div type="button" className="down-vote-icon">
                     <i type="downvote" className="fas fa-angle-down"></i>
-                </div>
+                </div> */}
             </section>
         </section>
+        <Footer />
+        </>
     )
 }
 
