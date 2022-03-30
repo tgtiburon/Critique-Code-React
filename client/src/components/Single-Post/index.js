@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_POST } from '../../utils/queries';
 import { useAppContext } from '../../utils/GlobalState';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 function SinglePost() {
     const [state, dispatch] = useAppContext();
