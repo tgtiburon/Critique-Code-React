@@ -1,14 +1,23 @@
-import React from "react";
-import '../../assets/css/create-post.css';
+import React, { useState } from "react";
+import "../../assets/css/create-post.css";
+import Auth from "../../utils/auth";
+import CreatePost from "../Create-Post";
+
+import Login from "../Login";
 
 function SidePanel() {
-    return (
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCreatePostOpen, setCreatePostIsOpen] = useState(false);
+  const loggedIn = Auth.loggedIn();
+  return (
     <section className="sidebar-right">
-        <div className="inner-side">
-            <div className="header-card">
-                <h3>We're <span className="ital">Not </span>Stack Overflow</h3>
-                    </div>
-                        {/* <div className="about-section">
+      <div className="inner-side">
+        <div className="header-card">
+          <h3>
+            We're <span className="ital">Not </span>Stack Overflow
+          </h3>
+        </div>
+        {/* <div className="about-section">
                             <p>Welcome to Reddit <span className="ital">uhh I mean</span> Welcome to Critique Code.
                             Are you tired of getting incessantly cyber-bullied on Stack Overflow? Are you tired of
                             feeling like a terrible coder who has no business opening up their IDE everyday?
@@ -29,12 +38,40 @@ function SidePanel() {
                             </span>
                             </p>
                         </div> */}
-                    <div className="create-button">
-                <button id="create-post-btn" className="create-post auth-btns">Create a post</button>
-            </div>
+        <div className="create-button">
+          {loggedIn && (
+            <>
+              <button
+                onClick={() => setCreatePostIsOpen(true)}
+                id="create-post-btn"
+                className="create-post auth-btns"
+              >
+                Create a post
+              </button>
+              <CreatePost
+                open={isCreatePostOpen}
+                onClose={() => setCreatePostIsOpen(false)}
+              />
+            </>
+          )}
+
+          {!loggedIn && (
+            <>
+              <button
+                onClick={() => setIsOpen(true)}
+                id="other-login-btn"
+                className="create-post auth-btns"
+              >
+                Login
+              </button>
+              <Login open={isOpen} onClose={() => setIsOpen(false)} />
+            </>
+          )}
         </div>
+      </div>
     </section>
-    )
-};
+  );
+}
 
 export default SidePanel;
+

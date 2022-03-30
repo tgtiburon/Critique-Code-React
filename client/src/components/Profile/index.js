@@ -14,7 +14,7 @@ function Profile() {
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, 
         { variables: { userName : userParam }});
     if (data) {
-        console.log(data.me)
+       // console.log(data.me)
     }
     
     useEffect(() => {
