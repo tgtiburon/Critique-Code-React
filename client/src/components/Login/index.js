@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDom from 'react-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER,
@@ -6,6 +6,7 @@ import { ADD_USER,
  } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
+import './style.css';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -17,7 +18,44 @@ const MODAL_STYLES = {
   zIndex: 1000
 }
 
+const MODAL_STYLES_2 = {
+  position: 'fixed',
+  alignItems: 'center',
+  display: 'none',
+  position: 'absolute',
+  zIndex: 1000,
+  left: '30%',
+  top: '30%',
+  width: '100%',
+  height: '100%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#e9e9e9',
+  padding: '25px',
+  overflow: 'hidden',
+}
 const OVERLAY_STYLES = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: 'rgba(0, 0, 0, .7)',
+  zIndex: 1000
+}
+
+const OVERLAY_STYLES_2 = {
+	backgroundColor: 'var(--lightblue)',
+	background: "url('https://images.pexels.com/photos/1342460/pexels-photo-1342460.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')",
+	backgroundAttachment: 'fixed',
+	backgroundPosition: 'center',
+	backgroundRepeat: 'no-repeat',
+	backgroundSize: 'cover',
+	height: '100%',
+	left: '-100%',
+	position: 'relative',
+	transform: 'translateX(0)',
+	transition: 'transform 0.6s ease-in-out',
+	width: '200%',
   position: 'fixed',
   top: 0,
   left: 0,
@@ -99,18 +137,29 @@ const handleFormSubmitLogin = async (event) => {
   setLogInState({
     userName: '',
     password: '',
-  });
-};
+    });
+  };
+
+  const [animState, setAnimState] = useState(true);
+
+  const logIn = () => {
+    setAnimState(false)
+  };
+
+  const signUp = () => {
+    setAnimState(true)
+  };
+
+  console.log(animState)
+
 
   if (!open) return null
 
   return ReactDom.createPortal(
-    <div style={OVERLAY_STYLES}>
-    <div style={MODAL_STYLES}>
-      <div id="signup-modal" className="modal">
-        <div className="modal-content container right-panel-active">
+      <div className="modal">
+        <div className={`modal-content container ${animState ? 'right-panel-active' : ''}`} id='animator'>
           <div className="container_form container_signup">
-                <form className="form" id="form1" onSubmit={handleFormSubmitNewUser}>
+                <form className="form" onSubmit={handleFormSubmitNewUser}>
                   <h2 className="form_title">Join in on the fun!</h2>
                   <input 
                     type="text" 
@@ -182,13 +231,18 @@ const handleFormSubmitLogin = async (event) => {
               </form>
               {loginError && <div>Login failed</div>}
             </div>
-            
+            <div className="container_overlay">
+              <div className="overlay">
+                <div className="overlay_panel overlay_left">
+                  <button onClick={logIn} className="auth-button" id="logIn">Log In</button>
+                </div>
+                <div className="overlay_panel overlay_right">
+                  <button onClick={signUp} className="auth-button" id="signUp">Sign Up</button>
+                </div>
+              </div>
+            </div>
         </div>
-
-      </div>
-      <button className="auth-button" onClick={onClose}>Close</button>
-    </div>
-    </div>,
+      </div>,
     document.getElementById('portal')
   )
 }
