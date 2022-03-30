@@ -6,6 +6,8 @@ import './App.css';
 
 import Home from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
+import SinglePost from './pages/SinglePost'
+import PublicProfile from './components/Public-Profile';
 import { AppProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
@@ -36,6 +38,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/Profile" component={ProfilePage} />
+            <Route exact path="/publicProfile" component={PublicProfile} />
+            <Route exact path="/post/:id" component={SinglePost} />
             <Route component={Home} />
           </Switch>
         </AppProvider>

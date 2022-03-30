@@ -31,7 +31,6 @@ function SidePanel() {
                         </div> */}
                     <div className="create-button">
                 <button id="create-post-btn" className="create-post auth-btns">Create a post</button>
-                <button id="other-login-btn" className="create-post auth-btns">Create a post</button>
             </div>
         </div>
     </section>

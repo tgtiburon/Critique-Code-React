@@ -5,7 +5,8 @@ import  {
     UPDATE_TIMELINE,
     SET_FILTER,
     REDUCE_TIMELINE,
-    UPDATE_USER
+    UPDATE_USER,
+    SET_POST
 } from './actions';
 
 import { useReducer } from 'react';
@@ -32,6 +33,11 @@ export const reducer = (state, action) => {
                 ...state,
                 userData: action.userData
             };
+        case SET_POST:
+            return {
+                ...state,
+                activePost: action.activePost
+            }
         default:
             return state
     }

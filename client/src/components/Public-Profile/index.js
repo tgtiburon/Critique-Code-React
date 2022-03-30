@@ -12,7 +12,7 @@ function PublicProfile() {
                         <div>
                             <h4 id="title-user"></h4>
                         </div>
-                <img className="profile-icon"></img>
+                <img className="profile-icon" alt="profile-icon"></img>
                 </div>
                 <div className="about-section">
                     <p id="github-id"></p>
