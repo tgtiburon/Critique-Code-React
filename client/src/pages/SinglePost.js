@@ -5,14 +5,17 @@ import { QUERY_POST } from '../utils/queries';
 import { useAppContext } from '../utils/GlobalState';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { SET_POST } from '../utils/actions';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function SinglePost() {
+    // get the post id
     const { id: _id } = useParams();
 
-    // const [state, dispatch] = useAppContext();
+    const [state, dispatch] = useAppContext();
+    const { activePost } = state
 
     const { loading, data } = useQuery(QUERY_POST, {
         variables: { id: _id }
@@ -20,12 +23,20 @@ function SinglePost() {
 
     const post = data?.post || {};
 
-    console.log(post);
+    // set the clicked post in global as activePost
+    // eventually will store in IDB
+    useEffect(() => {
+        dispatch({
+            type: SET_POST,
+            activePost: post
+        })
+    }, [loading, data, dispatch])
 
+    // loading check for render
     if(loading) {  
         return <div>Working on it...</div>
     }
-
+    
     return (
         <>
         <Header />
