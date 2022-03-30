@@ -30,6 +30,7 @@ function Profile() {
     const { avatar, bio, github, title, userName } = userData
 
     return (
+        
     <section className="side-info">
         <section className="sidebar-right">
             <div className="inner-side">
@@ -39,7 +40,7 @@ function Profile() {
                         <div>
                             <h4 id="title-user">{title}</h4>
                         </div>
-                <img className="profile-icon" src={`/images/${avatar}`}></img>
+                <img className="profile-icon" alt='profile image' src={`/images/${avatar}`}></img>
                 </div>
                 <div className="about-section">
                     <p id="github-id">{github}</p>
@@ -51,6 +52,19 @@ function Profile() {
                     </div>
                 </div>
             </div>
+        </section>
+        <section className="side-info">
+            <section className="sidebar-left">
+                <div className="inner-side" id="{{posts.[0].user.id}}">
+                    <div className="header-card">
+                    <img src={`https://github-readme-stats.vercel.app/api/top-langs/?username=
+                    ${github}`} alt='github info'></img>
+                </div>
+                <div id="btn-new-post-holder">
+                    <button id="btn-new-post" className="auth-btns"> + New Post</button>
+                </div>
+                </div>
+            </section>
         </section>
     </section>
     )
