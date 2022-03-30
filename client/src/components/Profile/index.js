@@ -25,7 +25,7 @@ function Profile() {
                 userData: data.me
             })
         }
-    }, [data, loading, dispatch])
+    }, [data, loading, dispatch]);
 
     const { avatar, bio, github, title, userName } = userData
 
