@@ -7,6 +7,8 @@ import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
+import './style.css';
+import '../Login/style.css';
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -76,20 +78,27 @@ function CreatePost({ open, onClose }) {
     }
   };
 
+  const [animState, setAnimState] = useState(true);
+
+  const genreSel = () => {
+    setAnimState(false)
+  };
+
+  const submitPost = () => {
+    setAnimState(true)
+  };
+
   if (!open) return null;
 
   return ReactDom.createPortal(
-    <div style={OVERLAY_STYLES}>
-      <div style={MODAL_STYLES}>
-        <div id="createPost-modal" className="modal">
-          <div className="modal-content container right-panel-active">
-            <div className="container_form container_createPost">
+        <div className="modal">
+          <div className={`modal-content container ${animState ? 'right-panel-active' : ''}`}>
+            <div className="container_form container_signUp">
               <form
                 className="form"
-                id="form1"
                 onSubmit={handleFormSubmitCreatePost}
               >
-                <h2 className="form_title">Join in on the fun!</h2>
+                <h2 className="form_title">Share Your Mess</h2>
                 <input
                   type="text"
                   className="input"
@@ -110,6 +119,15 @@ function CreatePost({ open, onClose }) {
                   value={createPostState.post_body}
                   onChange={handleCreatePostChange}
                 />
+                <button type="submit" className="auth-button" id="unique-btn">
+                  Submit
+                </button>
+              </form>
+              {error && <div>Create Post Failed</div>}
+            </div>
+            <div className="container_form container_signin">
+                <form className='form'>
+                <h2 className="form_title">The Deets</h2>
                 <input
                   type="text"
                   className="input"
@@ -130,22 +148,24 @@ function CreatePost({ open, onClose }) {
                   value={createPostState.tag_language}
                   onChange={handleCreatePostChange}
                 />
-
-                <button type="submit" className="auth-button" id="unique-btn">
-                  Submit
-                </button>
                 <button className="auth-button" onClick={onClose}>
                   Close
                 </button>
-              </form>
-              {error && <div>Create Post Failed</div>}
+                </form>
+              </div>
+            <div className="container_overlay">
+              <div className="overlay">
+                <div className="overlay_panel overlay_left">
+                  <button onClick={genreSel} className="auth-button" id="logIn">The Details</button>
+                </div>
+                <div className="overlay_panel overlay_right">
+                  <button onClick={submitPost} className="auth-button" id="signUp">Create Post</button>
+                </div>
+              </div>
             </div>
-
             <div className="container_form container_post"></div>
           </div>
-        </div>
-      </div>
-    </div>,
+        </div>,
     document.getElementById("portal")
   );
 }

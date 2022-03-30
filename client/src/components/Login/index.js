@@ -157,7 +157,7 @@ const handleFormSubmitLogin = async (event) => {
 
   return ReactDom.createPortal(
       <div className="modal">
-        <div className={`modal-content container ${animState ? 'right-panel-active' : ''}`} id='animator'>
+        <div className={`modal-content container ${animState ? 'right-panel-active' : ''}`}>
           <div className="container_form container_signup">
                 <form className="form" onSubmit={handleFormSubmitNewUser}>
                   <h2 className="form_title">Join in on the fun!</h2>
