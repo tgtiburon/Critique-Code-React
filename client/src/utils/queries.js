@@ -74,8 +74,9 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_POST = gql`
-  query posts {
-    posts {
+  query post($id: ID!) {
+    post(_id: $id) {
+      _id
       userName
       upVoted_user_ids {
         _id
