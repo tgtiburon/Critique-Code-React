@@ -45,6 +45,7 @@ function App() {
         </AppProvider>
       </Router>
     </ApolloProvider>
+   
   );
 }
 
